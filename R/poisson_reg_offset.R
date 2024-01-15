@@ -26,7 +26,7 @@ poisson_reg_offset <- function(mode = "regression", penalty = NULL,
     eng_args = NULL,
     mode = mode,
     method = NULL,
-    engine = NULL
+    engine = engine
   )
 }
 

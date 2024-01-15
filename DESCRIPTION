@@ -18,7 +18,9 @@ Imports:
     rlang,
     stats
 Suggests: 
-    testthat (>= 3.0.0)
+    recipes,
+    testthat (>= 3.0.0),
+    workflows
 Config/testthat/edition: 3
 Depends: 
     R (>= 4.1)

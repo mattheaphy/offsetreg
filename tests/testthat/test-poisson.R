@@ -35,7 +35,39 @@ test_that("poisson_reg_offset() works", {
   expect_identical(predict(glm_base, type = 'response') |> unname(),
                    predict(glm_off, us_deaths)$.pred)
 
+  # glmnet offset
+  glmnet_off <- poisson_reg_offset(penalty = 1E-5) |>
+    set_engine("glmnet_offset", offset_col = "off") |>
+    fit(f_off, data = us_deaths)
+  expect_identical(predict(glmnet_base, x, newoffset = us_deaths$off, s = 1E-5,
+                           type = 'response') |> as.numeric(),
+                   predict(glmnet_off, us_deaths)$.pred)
+
+})
+
+test_that("poisson_reg_offset() works with recipes", {
+
+  rec <- recipes::recipe(deaths ~ gender + age_group + year + off,
+                         data = us_deaths) |>
+    recipes::step_rename(offset = off)
+
   # glm offset
+  glm_off <- workflows::workflow() |>
+    workflows::add_recipe(rec) |>
+    workflows::add_model(poisson_reg_offset() |> set_engine("glm_offset")) |>
+    fit(data = us_deaths)
+  expect_identical(predict(glm_base, type = 'response') |> unname(),
+                   predict(glm_off, us_deaths)$.pred)
+
+  # glmnet offset
+  glmnet_off <- workflows::workflow() |>
+    workflows::add_recipe(
+      rec |>
+        recipes::step_dummy(recipes::all_nominal_predictors())) |>
+    workflows::add_model(poisson_reg_offset(penalty = 1E-5) |>
+                           set_engine("glmnet_offset")) |>
+    fit(data = us_deaths)
+
   glmnet_off <- poisson_reg_offset(penalty = 1E-5) |>
     set_engine("glmnet_offset", offset_col = "off") |>
     fit(f_off, data = us_deaths)
