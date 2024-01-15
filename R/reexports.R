@@ -1,3 +1,3 @@
-#' @importFrom parsnip poisson_reg
+#' @importFrom parsnip translate
 #' @export
-parsnip::poisson_reg()
+parsnip::translate
