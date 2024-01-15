@@ -7,7 +7,8 @@ x_off <- model.matrix(update(f, ~. + off), us_deaths)[, -1]
 
 # base models
 glm_base <- glm(f, family = "poisson", us_deaths, offset = off)
-glmnet_base <- glmnet::glmnet(x, y, family = "poisson", offset = us_deaths$off)
+glmnet_base <- glmnet::glmnet(x, y, family = "poisson", offset = us_deaths$off,
+                              alpha = 0.25)
 
 test_that("*_offset() models work", {
 
@@ -18,7 +19,8 @@ test_that("*_offset() models work", {
   expect_identical(predict(glm_base), predict(glm_off))
 
   # glmnet_offset
-  glmnet_off <- glmnet_offset(x_off, y, family = "poisson", offset_col = "off")
+  glmnet_off <- glmnet_offset(x_off, y, family = "poisson", offset_col = "off",
+                              alpha = 0.25)
 
 
   expect_identical(predict(glmnet_base, x, newoffset = us_deaths$off, s = 1E-5),
@@ -36,7 +38,7 @@ test_that("poisson_reg_offset() works", {
                    predict(glm_off, us_deaths)$.pred)
 
   # glmnet offset
-  glmnet_off <- poisson_reg_offset(penalty = 1E-5) |>
+  glmnet_off <- poisson_reg_offset(penalty = 1E-5, mixture = 0.25) |>
     set_engine("glmnet_offset", offset_col = "off") |>
     fit(f_off, data = us_deaths)
   expect_identical(predict(glmnet_base, x, newoffset = us_deaths$off, s = 1E-5,
@@ -60,17 +62,19 @@ test_that("poisson_reg_offset() works with recipes", {
                    predict(glm_off, us_deaths)$.pred)
 
   # glmnet offset
+  rec <- rec |> recipes::step_dummy(recipes::all_nominal_predictors())
   glmnet_off <- workflows::workflow() |>
-    workflows::add_recipe(
-      rec |>
-        recipes::step_dummy(recipes::all_nominal_predictors())) |>
-    workflows::add_model(poisson_reg_offset(penalty = 1E-5) |>
-                           set_engine("glmnet_offset")) |>
+    workflows::add_recipe(rec) |>
+    workflows::add_model(poisson_reg_offset(penalty = 1E-5, mixture = 0.25) |>
+                           set_engine("glmnet_offset", offset_col = "offset")) |>
     fit(data = us_deaths)
+  # re-do the baseline glmnet fix - columns are in a different order after the
+  # recipe
+  x <- rec |> recipes::prep() |> recipes::juice() |> as.matrix()
+  x <- x[, !colnames(x) %in% c("offset", "deaths")]
+  glmnet_base <- glmnet::glmnet(x, y, family = "poisson", offset = us_deaths$off,
+                                alpha = 0.25)
 
-  glmnet_off <- poisson_reg_offset(penalty = 1E-5) |>
-    set_engine("glmnet_offset", offset_col = "off") |>
-    fit(f_off, data = us_deaths)
   expect_identical(predict(glmnet_base, x, newoffset = us_deaths$off, s = 1E-5,
                            type = 'response') |> as.numeric(),
                    predict(glmnet_off, us_deaths)$.pred)
