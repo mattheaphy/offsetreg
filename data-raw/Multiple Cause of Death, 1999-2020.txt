@@ -1,0 +1,188 @@
+"Notes"	"Gender"	"Gender Code"	"Ten-Year Age Groups"	"Ten-Year Age Groups Code"	"Year"	"Year Code"	Deaths	Population	Crude Rate
+	"Female"	"F"	"25-34 years"	"25-34"	"2011"	"2011"	13663	20746335	65.9
+	"Female"	"F"	"25-34 years"	"25-34"	"2012"	"2012"	13808	20970529	65.8
+	"Female"	"F"	"25-34 years"	"25-34"	"2013"	"2013"	14001	21203096	66.0
+	"Female"	"F"	"25-34 years"	"25-34"	"2014"	"2014"	14480	21546290	67.2
+	"Female"	"F"	"25-34 years"	"25-34"	"2015"	"2015"	15736	21838064	72.1
+	"Female"	"F"	"25-34 years"	"25-34"	"2016"	"2016"	17359	22077505	78.6
+	"Female"	"F"	"25-34 years"	"25-34"	"2017"	"2017"	18066	22351311	80.8
+	"Female"	"F"	"25-34 years"	"25-34"	"2018"	"2018"	17980	22487065	80.0
+	"Female"	"F"	"25-34 years"	"25-34"	"2019"	"2019"	17827	22581141	78.9
+	"Female"	"F"	"25-34 years"	"25-34"	"2020 "	"2020"	21654	22625267	95.7
+	"Female"	"F"	"35-44 years"	"35-44"	"2011"	"2011"	26678	20404484	130.7
+	"Female"	"F"	"35-44 years"	"35-44"	"2012"	"2012"	26233	20342813	129.0
+	"Female"	"F"	"35-44 years"	"35-44"	"2013"	"2013"	26501	20307429	130.5
+	"Female"	"F"	"35-44 years"	"35-44"	"2014"	"2014"	27303	20353904	134.1
+	"Female"	"F"	"35-44 years"	"35-44"	"2015"	"2015"	27418	20386206	134.5
+	"Female"	"F"	"35-44 years"	"35-44"	"2016"	"2016"	28577	20317393	140.7
+	"Female"	"F"	"35-44 years"	"35-44"	"2017"	"2017"	29004	20506270	141.4
+	"Female"	"F"	"35-44 years"	"35-44"	"2018"	"2018"	29004	20690288	140.2
+	"Female"	"F"	"35-44 years"	"35-44"	"2019"	"2019"	29550	20867064	141.6
+	"Female"	"F"	"35-44 years"	"35-44"	"2020 "	"2020"	35996	21090324	170.7
+	"Female"	"F"	"45-54 years"	"45-54"	"2011"	"2011"	71538	22698956	315.2
+	"Female"	"F"	"45-54 years"	"45-54"	"2012"	"2012"	70249	22461868	312.7
+	"Female"	"F"	"45-54 years"	"45-54"	"2013"	"2013"	69727	22198448	314.1
+	"Female"	"F"	"45-54 years"	"45-54"	"2014"	"2014"	69540	22033807	315.6
+	"Female"	"F"	"45-54 years"	"45-54"	"2015"	"2015"	68947	21889385	315.0
+	"Female"	"F"	"45-54 years"	"45-54"	"2016"	"2016"	68430	21680540	315.6
+	"Female"	"F"	"45-54 years"	"45-54"	"2017"	"2017"	66338	21468595	309.0
+	"Female"	"F"	"45-54 years"	"45-54"	"2018"	"2018"	63807	21090497	302.5
+	"Female"	"F"	"45-54 years"	"45-54"	"2019"	"2019"	61546	20702936	297.3
+	"Female"	"F"	"45-54 years"	"45-54"	"2020 "	"2020"	71298	20441441	348.8
+	"Female"	"F"	"55-64 years"	"55-64"	"2011"	"2011"	126674	19703935	642.9
+	"Female"	"F"	"55-64 years"	"55-64"	"2012"	"2012"	128655	19983308	643.8
+	"Female"	"F"	"55-64 years"	"55-64"	"2013"	"2013"	131802	20359676	647.4
+	"Female"	"F"	"55-64 years"	"55-64"	"2014"	"2014"	136610	20755699	658.2
+	"Female"	"F"	"55-64 years"	"55-64"	"2015"	"2015"	140159	21163072	662.3
+	"Female"	"F"	"55-64 years"	"55-64"	"2016"	"2016"	144061	21464106	671.2
+	"Female"	"F"	"55-64 years"	"55-64"	"2017"	"2017"	146671	21737855	674.7
+	"Female"	"F"	"55-64 years"	"55-64"	"2018"	"2018"	146563	21873773	670.0
+	"Female"	"F"	"55-64 years"	"55-64"	"2019"	"2019"	147012	21949318	669.8
+	"Female"	"F"	"55-64 years"	"55-64"	"2020 "	"2020"	169422	21914243	773.1
+	"Female"	"F"	"65-74 years"	"65-74"	"2011"	"2011"	180776	12005425	1505.8
+	"Female"	"F"	"65-74 years"	"65-74"	"2012"	"2012"	187411	12782530	1466.1
+	"Female"	"F"	"65-74 years"	"65-74"	"2013"	"2013"	196531	13419124	1464.6
+	"Female"	"F"	"65-74 years"	"65-74"	"2014"	"2014"	202893	14049245	1444.2
+	"Female"	"F"	"65-74 years"	"65-74"	"2015"	"2015"	212669	14658169	1450.9
+	"Female"	"F"	"65-74 years"	"65-74"	"2016"	"2016"	219338	15239221	1439.3
+	"Female"	"F"	"65-74 years"	"65-74"	"2017"	"2017"	227679	15806306	1440.4
+	"Female"	"F"	"65-74 years"	"65-74"	"2018"	"2018"	230867	16246231	1421.0
+	"Female"	"F"	"65-74 years"	"65-74"	"2019"	"2019"	235312	16783854	1402.0
+	"Female"	"F"	"65-74 years"	"65-74"	"2020 "	"2020"	282508	17365858	1626.8
+	"Female"	"F"	"75-84 years"	"75-84"	"2011"	"2011"	313532	7602197	4124.2
+	"Female"	"F"	"75-84 years"	"75-84"	"2012"	"2012"	309747	7624484	4062.5
+	"Female"	"F"	"75-84 years"	"75-84"	"2013"	"2013"	309673	7686002	4029.1
+	"Female"	"F"	"75-84 years"	"75-84"	"2014"	"2014"	308074	7789312	3955.1
+	"Female"	"F"	"75-84 years"	"75-84"	"2015"	"2015"	313720	7899603	3971.3
+	"Female"	"F"	"75-84 years"	"75-84"	"2016"	"2016"	312097	8056660	3873.8
+	"Female"	"F"	"75-84 years"	"75-84"	"2017"	"2017"	321088	8298676	3869.1
+	"Female"	"F"	"75-84 years"	"75-84"	"2018"	"2018"	328017	8659334	3788.0
+	"Female"	"F"	"75-84 years"	"75-84"	"2019"	"2019"	332927	8971649	3710.9
+	"Female"	"F"	"75-84 years"	"75-84"	"2020 "	"2020"	393226	9228272	4261.1
+	"Female"	"F"	"85+ years"	"85+"	"2011"	"2011"	505120	3843148	13143.4
+	"Female"	"F"	"85+ years"	"85+"	"2012"	"2012"	511204	3923297	13030.0
+	"Female"	"F"	"85+ years"	"85+"	"2013"	"2013"	520736	3999007	13021.6
+	"Female"	"F"	"85+ years"	"85+"	"2014"	"2014"	517441	4053362	12765.7
+	"Female"	"F"	"85+ years"	"85+"	"2015"	"2015"	537997	4112863	13080.8
+	"Female"	"F"	"85+ years"	"85+"	"2016"	"2016"	531107	4155488	12780.9
+	"Female"	"F"	"85+ years"	"85+"	"2017"	"2017"	543169	4189013	12966.5
+	"Female"	"F"	"85+ years"	"85+"	"2018"	"2018"	542962	4218810	12870.0
+	"Female"	"F"	"85+ years"	"85+"	"2019"	"2019"	535581	4228470	12666.1
+	"Female"	"F"	"85+ years"	"85+"	"2020 "	"2020"	617885	4243727	14560.0
+	"Male"	"M"	"25-34 years"	"25-34"	"2011"	"2011"	30085	21044163	143.0
+	"Male"	"M"	"25-34 years"	"25-34"	"2012"	"2012"	30783	21338792	144.3
+	"Male"	"M"	"25-34 years"	"25-34"	"2013"	"2013"	31462	21641491	145.4
+	"Male"	"M"	"25-34 years"	"25-34"	"2014"	"2014"	32697	21970214	148.8
+	"Male"	"M"	"25-34 years"	"25-34"	"2015"	"2015"	35781	22299138	160.5
+	"Male"	"M"	"25-34 years"	"25-34"	"2016"	"2016"	40257	22599738	178.1
+	"Male"	"M"	"25-34 years"	"25-34"	"2017"	"2017"	42149	22991361	183.3
+	"Male"	"M"	"25-34 years"	"25-34"	"2018"	"2018"	40864	23210709	176.1
+	"Male"	"M"	"25-34 years"	"25-34"	"2019"	"2019"	41351	23359180	177.0
+	"Male"	"M"	"25-34 years"	"25-34"	"2020 "	"2020"	51832	23444379	221.1
+	"Male"	"M"	"35-44 years"	"35-44"	"2011"	"2011"	43215	20223470	213.7
+	"Male"	"M"	"35-44 years"	"35-44"	"2012"	"2012"	42929	20173607	212.8
+	"Male"	"M"	"35-44 years"	"35-44"	"2013"	"2013"	43072	20145261	213.8
+	"Male"	"M"	"35-44 years"	"35-44"	"2014"	"2014"	43693	20159229	216.7
+	"Male"	"M"	"35-44 years"	"35-44"	"2015"	"2015"	45670	20203577	226.0
+	"Male"	"M"	"35-44 years"	"35-44"	"2016"	"2016"	49215	20152763	244.2
+	"Male"	"M"	"35-44 years"	"35-44"	"2017"	"2017"	50792	20369100	249.4
+	"Male"	"M"	"35-44 years"	"35-44"	"2018"	"2018"	51376	20587600	249.5
+	"Male"	"M"	"35-44 years"	"35-44"	"2019"	"2019"	53436	20792080	257.0
+	"Male"	"M"	"35-44 years"	"35-44"	"2020 "	"2020"	68494	21045868	325.5
+	"Male"	"M"	"45-54 years"	"45-54"	"2011"	"2011"	111709	22019247	507.3
+	"Male"	"M"	"45-54 years"	"45-54"	"2012"	"2012"	109214	21806870	500.8
+	"Male"	"M"	"45-54 years"	"45-54"	"2013"	"2013"	107997	21569084	500.7
+	"Male"	"M"	"45-54 years"	"45-54"	"2014"	"2014"	106377	21425044	496.5
+	"Male"	"M"	"45-54 years"	"45-54"	"2015"	"2015"	105547	21298776	495.6
+	"Male"	"M"	"45-54 years"	"45-54"	"2016"	"2016"	105086	21106139	497.9
+	"Male"	"M"	"45-54 years"	"45-54"	"2017"	"2017"	103804	20906357	496.5
+	"Male"	"M"	"45-54 years"	"45-54"	"2018"	"2018"	101030	20541202	491.8
+	"Male"	"M"	"45-54 years"	"45-54"	"2019"	"2019"	98847	20171966	490.0
+	"Male"	"M"	"45-54 years"	"45-54"	"2020 "	"2020"	119844	19924692	601.5
+	"Male"	"M"	"55-64 years"	"55-64"	"2011"	"2011"	196641	18358205	1071.1
+	"Male"	"M"	"55-64 years"	"55-64"	"2012"	"2012"	200951	18602894	1080.2
+	"Male"	"M"	"55-64 years"	"55-64"	"2013"	"2013"	206325	18956755	1088.4
+	"Male"	"M"	"55-64 years"	"55-64"	"2014"	"2014"	212198	19321882	1098.2
+	"Male"	"M"	"55-64 years"	"55-64"	"2015"	"2015"	217626	19714747	1103.9
+	"Male"	"M"	"55-64 years"	"55-64"	"2016"	"2016"	222384	19999038	1112.0
+	"Male"	"M"	"55-64 years"	"55-64"	"2017"	"2017"	225335	20257803	1112.3
+	"Male"	"M"	"55-64 years"	"55-64"	"2018"	"2018"	228273	20398863	1119.0
+	"Male"	"M"	"55-64 years"	"55-64"	"2019"	"2019"	227925	20499219	1111.9
+	"Male"	"M"	"55-64 years"	"55-64"	"2020 "	"2020"	271127	20489434	1323.3
+	"Male"	"M"	"65-74 years"	"65-74"	"2011"	"2011"	234276	10476313	2236.2
+	"Male"	"M"	"65-74 years"	"65-74"	"2012"	"2012"	244935	11202862	2186.4
+	"Male"	"M"	"65-74 years"	"65-74"	"2013"	"2013"	257898	11797642	2186.0
+	"Male"	"M"	"65-74 years"	"65-74"	"2014"	"2014"	268648	12349045	2175.5
+	"Male"	"M"	"65-74 years"	"65-74"	"2015"	"2015"	282347	12892348	2190.0
+	"Male"	"M"	"65-74 years"	"65-74"	"2016"	"2016"	292742	13391109	2186.1
+	"Male"	"M"	"65-74 years"	"65-74"	"2017"	"2017"	303931	13877140	2190.2
+	"Male"	"M"	"65-74 years"	"65-74"	"2018"	"2018"	312911	14246085	2196.5
+	"Male"	"M"	"65-74 years"	"65-74"	"2019"	"2019"	320247	14699579	2178.6
+	"Male"	"M"	"65-74 years"	"65-74"	"2020 "	"2020"	391999	15183540	2581.7
+	"Male"	"M"	"75-84 years"	"75-84"	"2011"	"2011"	312693	5573033	5610.8
+	"Male"	"M"	"75-84 years"	"75-84"	"2012"	"2012"	310681	5648150	5500.6
+	"Male"	"M"	"75-84 years"	"75-84"	"2013"	"2013"	315340	5760517	5474.2
+	"Male"	"M"	"75-84 years"	"75-84"	"2014"	"2014"	316430	5893378	5369.2
+	"Male"	"M"	"75-84 years"	"75-84"	"2015"	"2015"	323846	6023571	5376.3
+	"Male"	"M"	"75-84 years"	"75-84"	"2016"	"2016"	324819	6176874	5258.6
+	"Male"	"M"	"75-84 years"	"75-84"	"2017"	"2017"	336671	6407875	5254.0
+	"Male"	"M"	"75-84 years"	"75-84"	"2018"	"2018"	347188	6735040	5155.0
+	"Male"	"M"	"75-84 years"	"75-84"	"2019"	"2019"	355100	6998223	5074.1
+	"Male"	"M"	"75-84 years"	"75-84"	"2020 "	"2020"	428858	7223275	5937.2
+	"Male"	"M"	"85+ years"	"85+"	"2011"	"2011"	285425	1894025	15069.8
+	"Male"	"M"	"85+ years"	"85+"	"2012"	"2012"	294103	1964033	14974.4
+	"Male"	"M"	"85+ years"	"85+"	"2013"	"2013"	304462	2041782	14911.6
+	"Male"	"M"	"85+ years"	"85+"	"2014"	"2014"	308785	2108869	14642.2
+	"Male"	"M"	"85+ years"	"85+"	"2015"	"2015"	321704	2174298	14795.8
+	"Male"	"M"	"85+ years"	"85+"	"2016"	"2016"	323355	2224843	14533.8
+	"Male"	"M"	"85+ years"	"85+"	"2017"	"2017"	334866	2279669	14689.2
+	"Male"	"M"	"85+ years"	"85+"	"2018"	"2018"	337318	2325693	14504.0
+	"Male"	"M"	"85+ years"	"85+"	"2019"	"2019"	338165	2376488	14229.6
+	"Male"	"M"	"85+ years"	"85+"	"2020 "	"2020"	394920	2414693	16354.9
+"---"
+"Dataset: Multiple Cause of Death, 1999-2020"
+"Query Parameters:"
+"Ten-Year Age Groups: 25-34 years; 35-44 years; 45-54 years; 55-64 years; 65-74 years; 75-84 years; 85+ years"
+"Year/Month: 2011; 2012; 2013; 2014; 2015; 2016; 2017; 2018; 2019; 2020"
+"Group By: Gender; Ten-Year Age Groups; Year"
+"Show Totals: False"
+"Show Zero Values: False"
+"Show Suppressed: False"
+"Calculate Rates Per: 100,000"
+"Rate Options: Default intercensal populations for years 2001-2009 (except Infant Age Groups)"
+"---"
+"Help: See http://wonder.cdc.gov/wonder/help/mcd.html for more information."
+"---"
+"Query Date: Jan 15, 2024 10:00:25 AM"
+"---"
+"Suggested Citation: Centers for Disease Control and Prevention, National Center for Health Statistics. National Vital Statistics"
+"System, Mortality 1999-2020 on CDC WONDER Online Database, released in 2021. Data are from the Multiple Cause of Death Files,"
+"1999-2020, as compiled from data provided by the 57 vital statistics jurisdictions through the Vital Statistics Cooperative"
+"Program. Accessed at http://wonder.cdc.gov/mcd-icd10.html on Jan 15, 2024"
+"---"
+Caveats:
+"1. As of April 3, 2017, the underlying cause of death has been revised for 125 deaths in 2014. More information:"
+"http://wonder.cdc.gov/wonder/help/mcd.html#2014-Revision."
+"2. Deaths of persons with Age ""Not Stated"" are included in ""All"" counts and rates, but are not distributed among age groups,"
+"so are not included in age-specific counts, age-specific rates or in any age-adjusted rates. More information:"
+"http://wonder.cdc.gov/wonder/help/mcd.html#Not Stated."
+"3. The population figures for year 2020 are bridged-race estimates of the July 1 resident population, from the Vintage 2020"
+"postcensal series released by NCHS on September 22, 2021. The population figures for year 2019 are bridged-race estimates of the"
+"July 1 resident population, from the Vintage 2019 postcensal series released by NCHS on July 9, 2020. The population figures for"
+"year 2018 are bridged-race estimates of the July 1 resident population, from the Vintage 2018 postcensal series released by NCHS"
+"on June 25, 2019. The population figures for year 2017 are bridged-race estimates of the July 1 resident population, from the"
+"Vintage 2017 postcensal series released by NCHS on June 27, 2018. The population figures for year 2016 are bridged-race"
+"estimates of the July 1 resident population, from the Vintage 2016 postcensal series released by NCHS on June 26, 2017. The"
+"population figures for year 2015 are bridged-race estimates of the July 1 resident population, from the Vintage 2015 postcensal"
+"series released by NCHS on June 28, 2016. The population figures for year 2014 are bridged-race estimates of the July 1 resident"
+"population, from the Vintage 2014 postcensal series released by NCHS on June 30, 2015. The population figures for year 2013 are"
+"bridged-race estimates of the July 1 resident population, from the Vintage 2013 postcensal series released by NCHS on June 26,"
+"2014. The population figures for year 2012 are bridged-race estimates of the July 1 resident population, from the Vintage 2012"
+"postcensal series released by NCHS on June 13, 2013. Population figures for 2011 are bridged-race estimates of the July 1"
+"resident population, from the county-level postcensal Vintage 2011 series released by NCHS on July 18, 2012. Population figures"
+"for 2010 are April 1 Census counts. The population figures for years 2001 - 2009, are bridged-race estimates of the July 1"
+"resident population, from the revised intercensal county-level 2000 - 2009 series released by NCHS on October 26, 2012."
+"Population figures for 2000 are April 1 Census counts. Population figures for 1999 are from the 1990-1999 intercensal series of"
+"July 1 estimates. Population figures for Infant Age Groups are the number of live births. <br/><b>Note:</b> Rates and population"
+"figures for years 2001 - 2009 differ slightly from previously published reports, due to use of the population estimates which"
+"were available at the time of release."
