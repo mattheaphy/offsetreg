@@ -17,7 +17,7 @@ poisson_reg_offset <- function(mode = "regression", penalty = NULL,
   }
 
   args <- list(penalty = rlang::enquo(penalty),
-               penalty = rlang::enquo(mixture))
+               mixture = rlang::enquo(mixture))
 
   # Save some empty slots for future parts of the specification
   new_model_spec(
