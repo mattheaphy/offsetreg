@@ -1,3 +1,32 @@
+#' Fit Penalized Generalized Linear Models with an Offset
+#'
+#' This function is a wrapper around [glmnet::glmnet()] that uses a column from
+#' `x` as an offset.
+#'
+#' @details
+#' Outside of the `tidymodels` ecosystem, `glmnet_offset()` has no advantages
+#' over [glmnet::glmnet()] since that function allows for offsets to be
+#' specified in its `offset` argument.
+#'
+#' Within `tidymodels`, `glmnet_offset()` provides an advantage because it will
+#' ensure that offsets are included in the data whenever resamples are created.
+#'
+#' The `x`, `y`, `family`, `lambda`, `alpha` and `weights` arguments have the
+#' same meanings as [glmnet::glmnet()]. See that function's documentation for
+#' full details.
+#'
+#' @param x Input matrix
+#' @param y Response variable
+#' @param lambda A numeric vector of regularization penalty values
+#' @param alpha A number between zero and one denoting the proportion of L1
+#' (lasso) versus L2 (ridge) regularization.
+#' - `alpha = 1`: Pure lasso model
+#' - `alpha = 0`: Pure ridge model
+#' @inheritParams glm_offset
+#'
+#' @returns A `glmnet` object. See [glmnet::glmnet()] for full details.
+#'
+#' @seealso [glmnet::glmnet()]
 #' @export
 glmnet_offset <- function(x, y, family, offset_col = "offset",
                           weights = NULL, lambda = NULL, alpha = 1) {
