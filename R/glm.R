@@ -59,12 +59,13 @@ glm_offset <- function(formula, family = "gaussian", data,
 
 # internal function used to rename the specified offset column to "offset"
 .offset_rename <- function(data, offset_col) {
-  nm <- replace(names(data), names(data) == offset_col, "offset")
-  stats::setNames(data, nm)
+  nm <- replace(colnames(data), colnames(data) == offset_col, "offset")
+  colnames(data) <- nm
+  data
 }
 
 # internal function used to pre-process glm_offset data prior to predictions
-.predict_pre_glm_offset <- function(data, object) {
+.predict_pre_offset_rename <- function(data, object) {
   offset_col <- eval_tidy(object$spec$eng_args$offset_col) %||% "offset"
   .offset_rename(data, offset_col)
 }
