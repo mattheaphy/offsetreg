@@ -6,7 +6,14 @@
 \alias{offsetreg-package}
 \title{offsetreg: Tidymodels engines with support for offset terms}
 \description{
-This package provides engines compatible with the tidymodels ecosystem that support offset terms.
+This package provides functions that extend the tidymodels ecosystem \url{https://www.tidymodels.org/} to enable usage of predictive models with offset terms.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/mattheaphy/offsetreg/,}
+}
+
 }
 \author{
 \strong{Maintainer}: Matt Heaphy \email{mattrmattrs@gmail.com}
