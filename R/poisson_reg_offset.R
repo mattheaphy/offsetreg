@@ -32,8 +32,10 @@ poisson_reg_offset <- function(mode = "regression", penalty = NULL,
 
 
 make_poisson_reg_offset <- function() {
-  set_new_model("poisson_reg_offset")
-  set_model_mode(model = "poisson_reg_offset", mode = "regression")
+  if (is.null(get_model_env()[["poisson_reg_offset"]])) {
+    set_new_model("poisson_reg_offset")
+    set_model_mode(model = "poisson_reg_offset", mode = "regression")
+  }
 }
 
 
