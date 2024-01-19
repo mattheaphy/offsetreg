@@ -44,10 +44,11 @@ glm_offset <- function(formula, family = "gaussian", data,
   if (grepl("(\\s|^)\\.(\\s|$)", formula_str[[3]])) {
     # string manipulation is required because R will return an error
     # if update is called on a formula with `.` on the RHS
-    formula <- paste(formula_str[[2]], "~", formula_str[[3]], "- offset") |>
+    formula <- paste(formula_str[[2]], "~",
+                     formula_str[[3]], "-", offset_col) |>
       stats::as.formula()
   } else {
-    formula <- stats::update(formula, ~ . - offset)
+    formula <- stats::update(formula, paste("~ . -", offset_col))
   }
 
   stats::glm(formula,
