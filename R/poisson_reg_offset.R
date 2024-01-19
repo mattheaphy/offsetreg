@@ -50,3 +50,25 @@ translate.poisson_reg_offset <- function (x, engine = x$engine, ...) {
   }
   x
 }
+
+# code from the parsnip package
+#' @export
+update.poisson_reg_offset <- function(object,
+                                      parameters = NULL,
+                                      penalty = NULL, mixture = NULL,
+                                      fresh = FALSE, ...) {
+
+  args <- list(
+    penalty = enquo(penalty),
+    mixture = enquo(mixture)
+  )
+
+  update_spec(
+    object = object,
+    parameters = parameters,
+    args_enquo_list = args,
+    fresh = fresh,
+    cls = "poisson_reg_offset",
+    ...
+  )
+}
