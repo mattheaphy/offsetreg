@@ -72,3 +72,11 @@ update.poisson_reg_offset <- function(object,
     ...
   )
 }
+
+
+#' @export
+print.poisson_reg_offset <- function(x, ...) {
+  print_model_spec(x, desc = "Poisson Regression with Offsets", ...)
+
+  invisible(x)
+}
