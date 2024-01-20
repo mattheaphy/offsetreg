@@ -98,7 +98,7 @@ test_that("finalize works", {
   expect_no_error(tune::finalize_workflow(wf, param_grid) |> fit(us_deaths))
 
   expect_equal(tune::finalize_model(mod_spec, param_grid)$args |>
-                 purrr::map_dbl(rlang::eval_tidy),
-               c(penalty = 0.005, mixture =0.9))
+                 lapply(rlang::eval_tidy),
+               list(penalty = 0.005, mixture =0.9))
 
 })
