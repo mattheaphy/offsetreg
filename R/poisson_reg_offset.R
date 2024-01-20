@@ -6,6 +6,9 @@
 #' This function is similar to [parsnip::poisson_reg()] except that
 #' specification of an offset column is required.
 #'
+#' @returns A model specification object with the classes `poisson_reg_offset`
+#' and `model_spec`.
+#'
 #' @inheritParams parsnip::poisson_reg
 #' @seealso [parsnip::poisson_reg()]
 #' @export
