@@ -26,6 +26,11 @@
 #'
 #' @returns A `glmnet` object. See [glmnet::glmnet()] for full details.
 #'
+#' @examples
+#' us_deaths$off <- log(us_deaths$population)
+#' x <- model.matrix(~ age_group + gender + off, us_deaths)[, -1]
+#' glmnet_offset(x, us_deaths$deaths, family = "poisson", offset_col = "off")
+#'
 #' @seealso [glmnet::glmnet()]
 #' @export
 glmnet_offset <- function(x, y, family, offset_col = "offset",

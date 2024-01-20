@@ -43,6 +43,12 @@ an offset that follow a Poisson distribution.
 This function is similar to \code{\link[parsnip:poisson_reg]{parsnip::poisson_reg()}} except that
 specification of an offset column is required.
 }
+\examples{
+parsnip::show_model_info("poisson_reg_offset")
+
+poisson_reg_offset()
+
+}
 \seealso{
 \code{\link[parsnip:poisson_reg]{parsnip::poisson_reg()}}
 }

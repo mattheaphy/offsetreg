@@ -9,6 +9,11 @@
 #' @returns A model specification object with the classes `poisson_reg_offset`
 #' and `model_spec`.
 #'
+#' @examples
+#' parsnip::show_model_info("poisson_reg_offset")
+#'
+#' poisson_reg_offset()
+#'
 #' @inheritParams parsnip::poisson_reg
 #' @seealso [parsnip::poisson_reg()]
 #' @export
