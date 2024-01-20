@@ -8,7 +8,7 @@ Description: This package provides functions that extend the tidymodels
     ecosystem <https://www.tidymodels.org/> to enable usage of predictive models
     with offset terms.
 License: MIT + file LICENSE
-URL: https://github.com/mattheaphy/offsetreg/,
+URL: https://github.com/mattheaphy/offsetreg/, https://mattheaphy.github.io/offsetreg/
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
@@ -21,8 +21,11 @@ Imports:
     stats
 Suggests: 
     recipes,
+    rsample,
     testthat (>= 3.0.0),
-    workflows
+    tune,
+    workflows,
+    yardstick
 Config/testthat/edition: 3
 Depends: 
     R (>= 4.1)

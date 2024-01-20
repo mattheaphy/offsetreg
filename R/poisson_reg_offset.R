@@ -32,8 +32,10 @@ poisson_reg_offset <- function(mode = "regression", penalty = NULL,
 
 
 make_poisson_reg_offset <- function() {
-  set_new_model("poisson_reg_offset")
-  set_model_mode(model = "poisson_reg_offset", mode = "regression")
+  if (is.null(get_model_env()[["poisson_reg_offset"]])) {
+    set_new_model("poisson_reg_offset")
+    set_model_mode(model = "poisson_reg_offset", mode = "regression")
+  }
 }
 
 
@@ -47,4 +49,34 @@ translate.poisson_reg_offset <- function (x, engine = x$engine, ...) {
     x$args$penalty <- rlang::eval_tidy(x$args$penalty)
   }
   x
+}
+
+# code from the parsnip package
+#' @export
+update.poisson_reg_offset <- function(object,
+                                      parameters = NULL,
+                                      penalty = NULL, mixture = NULL,
+                                      fresh = FALSE, ...) {
+
+  args <- list(
+    penalty = rlang::enquo(penalty),
+    mixture = rlang::enquo(mixture)
+  )
+
+  update_spec(
+    object = object,
+    parameters = parameters,
+    args_enquo_list = args,
+    fresh = fresh,
+    cls = "poisson_reg_offset",
+    ...
+  )
+}
+
+
+#' @export
+print.poisson_reg_offset <- function(x, ...) {
+  print_model_spec(x, desc = "Poisson Regression with Offsets", ...)
+
+  invisible(x)
 }
