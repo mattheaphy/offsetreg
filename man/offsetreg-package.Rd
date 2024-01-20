@@ -11,7 +11,8 @@ This package provides functions that extend the tidymodels ecosystem \url{https:
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/mattheaphy/offsetreg/,}
+  \item \url{https://github.com/mattheaphy/offsetreg/}
+  \item \url{https://mattheaphy.github.io/offsetreg/}
 }
 
 }
