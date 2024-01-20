@@ -59,8 +59,8 @@ update.poisson_reg_offset <- function(object,
                                       fresh = FALSE, ...) {
 
   args <- list(
-    penalty = enquo(penalty),
-    mixture = enquo(mixture)
+    penalty = rlang::enquo(penalty),
+    mixture = rlang::enquo(mixture)
   )
 
   update_spec(
