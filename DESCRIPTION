@@ -22,11 +22,9 @@ Imports:
 Suggests: 
     glmnet,
     recipes,
-    rsample,
     testthat (>= 3.0.0),
     tune,
-    workflows,
-    yardstick
+    workflows
 Config/testthat/edition: 3
 Depends: 
     R (>= 4.1)

@@ -88,3 +88,9 @@ print.poisson_reg_offset <- function(x, ...) {
 
   invisible(x)
 }
+
+#' @export
+min_grid.poisson_reg_offset <- function(x, grid, ...) {
+  rlang::check_installed('tune')
+  tune::fit_max_value(x, grid, ...)
+}
