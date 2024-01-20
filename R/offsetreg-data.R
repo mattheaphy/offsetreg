@@ -151,9 +151,7 @@ make_poisson_reg_glmnet_offset <- function() {
   pred_args <- list(
     object = expr(object$fit),
     newx = expr(as.matrix(new_data[, rownames(object$fit$beta), drop = FALSE])),
-    newoffset = expr(new_data[, "offset", drop = TRUE]),
-    type = "response",
-    s = expr(object$spec$args$penalty)
+    newoffset = expr(new_data[, "offset", drop = TRUE])
   )
 
   parsnip::set_pred(
@@ -165,8 +163,9 @@ make_poisson_reg_glmnet_offset <- function() {
       pre = .predict_pre_offset_rename,
       post = parsnip::.organize_glmnet_pred,
       func = c(fun = "predict"),
-      args = pred_args
-    )
+      args = c(pred_args,
+               type = "response",
+               s = expr(object$spec$args$penalty)))
   )
 
   parsnip::set_pred(
