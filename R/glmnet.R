@@ -31,6 +31,8 @@
 glmnet_offset <- function(x, y, family, offset_col = "offset",
                           weights = NULL, lambda = NULL, alpha = 1) {
 
+  rlang::check_installed("glmnet")
+
   if (!offset_col %in% colnames(x)) {
     rlang::abort(glue("A column named `{offset_col}` must be present."))
   }
