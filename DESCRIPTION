@@ -1,6 +1,6 @@
 Package: offsetreg
 Title: Tidymodels engines with support for offset terms
-Version: 0.0.0.9000
+Version: 1.0.0
 Authors@R: 
     person("Matt", "Heaphy", email = "mattrmattrs@gmail.com", role = c("aut", "cre"))
 Maintainer: Matt Heaphy <mattrmattrs@gmail.com>    
