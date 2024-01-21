@@ -55,6 +55,12 @@ The \code{x}, \code{y}, \code{family}, \code{lambda}, \code{alpha} and \code{wei
 same meanings as \code{\link[glmnet:glmnet]{glmnet::glmnet()}}. See that function's documentation for
 full details.
 }
+\examples{
+us_deaths$off <- log(us_deaths$population)
+x <- model.matrix(~ age_group + gender + off, us_deaths)[, -1]
+glmnet_offset(x, us_deaths$deaths, family = "poisson", offset_col = "off")
+
+}
 \seealso{
 \code{\link[glmnet:glmnet]{glmnet::glmnet()}}
 }

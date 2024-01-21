@@ -1,31 +1,36 @@
 Package: offsetreg
-Title: Tidymodels engines with support for offset terms
-Version: 0.0.0.9000
+Title: An Extension of Tidymodels Supporting Offset Terms
+Version: 1.0.0
 Authors@R: 
-    person("Matt", "Heaphy", email = "mattrmattrs@gmail.com", role = c("aut", "cre"))
+    person("Matt", "Heaphy", email = "mattrmattrs@gmail.com", role = c("aut", "cre", "cph"))
 Maintainer: Matt Heaphy <mattrmattrs@gmail.com>    
-Description: This package provides functions that extend the tidymodels 
+Description: This package provides functions that extend the 'tidymodels' 
     ecosystem <https://www.tidymodels.org/> to enable usage of predictive models
-    with offset terms.
+    with offset terms. Models with offsets are most useful when working with 
+    count data or when fitting an adjustment model on top of an existing model 
+    with a prior expectation. The former situation is common in insurance where 
+    data is often weighted by exposures. The latter is common in life insurance 
+    where industry mortality tables are often used as a starting point for
+    setting assumptions.
 License: MIT + file LICENSE
 URL: https://github.com/mattheaphy/offsetreg/, https://mattheaphy.github.io/offsetreg/
+BugReports: https://github.com/mattheaphy/offsetreg/issues
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.0
 Imports: 
-    glmnet,
+    generics,
     glue,
     parsnip,
     poissonreg,
     rlang,
     stats
 Suggests: 
+    glmnet,
     recipes,
-    rsample,
     testthat (>= 3.0.0),
     tune,
-    workflows,
-    yardstick
+    workflows
 Config/testthat/edition: 3
 Depends: 
     R (>= 4.1)

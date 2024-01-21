@@ -19,6 +19,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/offsetreg)](https://CRAN.R-project.org/package=offsetreg)
+[![R-CMD-check](https://github.com/mattheaphy/offsetreg/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/mattheaphy/offsetreg/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 This package extends the [tidymodels](https://www.tidymodels.org) ecosystem to enable usage of predictive models with offset terms. Offset terms are predictors in a linear model that with a known *a priori* value. In other words, these terms do not have an associated coefficient ($\beta_i$) that needs to be determined. In a generalized linear model (GLM), an offset specification looks like:

@@ -4,19 +4,21 @@
 \name{offsetreg-package}
 \alias{offsetreg}
 \alias{offsetreg-package}
-\title{offsetreg: Tidymodels engines with support for offset terms}
+\title{offsetreg: An Extension of Tidymodels Supporting Offset Terms}
 \description{
-This package provides functions that extend the tidymodels ecosystem \url{https://www.tidymodels.org/} to enable usage of predictive models with offset terms.
+This package provides functions that extend the 'tidymodels' ecosystem \url{https://www.tidymodels.org/} to enable usage of predictive models with offset terms. Models with offsets are most useful when working with count data or when fitting an adjustment model on top of an existing model with a prior expectation. The former situation is common in insurance where data is often weighted by exposures. The latter is common in life insurance where industry mortality tables are often used as a starting point for setting assumptions.
 }
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/mattheaphy/offsetreg/,}
+  \item \url{https://github.com/mattheaphy/offsetreg/}
+  \item \url{https://mattheaphy.github.io/offsetreg/}
+  \item Report bugs at \url{https://github.com/mattheaphy/offsetreg/issues}
 }
 
 }
 \author{
-\strong{Maintainer}: Matt Heaphy \email{mattrmattrs@gmail.com}
+\strong{Maintainer}: Matt Heaphy \email{mattrmattrs@gmail.com} [copyright holder]
 
 }
 \keyword{internal}

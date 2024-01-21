@@ -7,6 +7,7 @@
 
 [![CRAN
 status](https://www.r-pkg.org/badges/version/offsetreg)](https://CRAN.R-project.org/package=offsetreg)
+[![R-CMD-check](https://github.com/mattheaphy/offsetreg/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/mattheaphy/offsetreg/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 This package extends the [tidymodels](https://www.tidymodels.org)

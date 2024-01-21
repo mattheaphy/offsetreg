@@ -38,6 +38,12 @@ The \code{formula}, \code{family}, \code{data}, and \code{weights} arguments hav
 meanings as \code{\link[stats:glm]{stats::glm()}}. See that function's documentation for full
 details.
 }
+\examples{
+us_deaths$off <- log(us_deaths$population)
+glm_offset(deaths ~ age_group + gender, family = "poisson",
+           us_deaths, offset_col = "off")
+
+}
 \seealso{
 \code{\link[stats:glm]{stats::glm()}}
 }

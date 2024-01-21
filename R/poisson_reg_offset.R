@@ -6,6 +6,14 @@
 #' This function is similar to [parsnip::poisson_reg()] except that
 #' specification of an offset column is required.
 #'
+#' @returns A model specification object with the classes `poisson_reg_offset`
+#' and `model_spec`.
+#'
+#' @examples
+#' parsnip::show_model_info("poisson_reg_offset")
+#'
+#' poisson_reg_offset()
+#'
 #' @inheritParams parsnip::poisson_reg
 #' @seealso [parsnip::poisson_reg()]
 #' @export
@@ -79,4 +87,10 @@ print.poisson_reg_offset <- function(x, ...) {
   print_model_spec(x, desc = "Poisson Regression with Offsets", ...)
 
   invisible(x)
+}
+
+#' @export
+min_grid.poisson_reg_offset <- function(x, grid, ...) {
+  rlang::check_installed('tune')
+  tune::fit_max_value(x, grid, ...)
 }

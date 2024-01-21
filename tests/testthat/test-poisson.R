@@ -40,6 +40,8 @@ test_that("poisson_reg_offset() works", {
     fit(f, data = us_deaths)
   expect_identical(predict(glm_base, type = 'response') |> unname(),
                    predict(glm_off, us_deaths)$.pred)
+  expect_identical(predict(glm_base),
+                   predict(glm_off, us_deaths, type = "raw"))
 
   # glmnet offset
   glmnet_off <- poisson_reg_offset(penalty = 1E-5, mixture = 0.25) |>
@@ -48,6 +50,8 @@ test_that("poisson_reg_offset() works", {
   expect_identical(predict(glmnet_base, x, newoffset = us_deaths$off, s = 1E-5,
                            type = 'response') |> as.numeric(),
                    predict(glmnet_off, us_deaths)$.pred)
+  expect_identical(predict(glmnet_base, x, newoffset = us_deaths$off, s = 1E-5),
+                   predict(glmnet_off, us_deaths, type = "raw"))
 
 })
 

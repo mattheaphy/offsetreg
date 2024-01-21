@@ -31,6 +31,10 @@ Available for \code{glmnet} and \code{spark} only.}
 \item{engine}{A single character string specifying what computational engine
 to use for fitting.}
 }
+\value{
+A model specification object with the classes \code{poisson_reg_offset}
+and \code{model_spec}.
+}
 \description{
 \code{poisson_reg_offset()} defines a generalized linear model of count data with
 an offset that follow a Poisson distribution.
@@ -38,6 +42,12 @@ an offset that follow a Poisson distribution.
 \details{
 This function is similar to \code{\link[parsnip:poisson_reg]{parsnip::poisson_reg()}} except that
 specification of an offset column is required.
+}
+\examples{
+parsnip::show_model_info("poisson_reg_offset")
+
+poisson_reg_offset()
+
 }
 \seealso{
 \code{\link[parsnip:poisson_reg]{parsnip::poisson_reg()}}
