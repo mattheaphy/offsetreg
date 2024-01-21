@@ -1,11 +1,11 @@
 Package: offsetreg
-Title: An Extension of Tidymodels Supporting Offset Terms
+Title: An Extension of 'Tidymodels' Supporting Offset Terms
 Version: 1.0.0
 Authors@R: 
     person("Matt", "Heaphy", email = "mattrmattrs@gmail.com", role = c("aut", "cre", "cph"))
 Maintainer: Matt Heaphy <mattrmattrs@gmail.com>    
-Description: This package provides functions that extend the 'tidymodels' 
-    ecosystem <https://www.tidymodels.org/> to enable usage of predictive models
+Description: This package extends the 'tidymodels' ecosystem 
+    <https://www.tidymodels.org/> to enable usage of predictive models
     with offset terms. Models with offsets are most useful when working with 
     count data or when fitting an adjustment model on top of an existing model 
     with a prior expectation. The former situation is common in insurance where 
