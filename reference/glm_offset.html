@@ -12,7 +12,7 @@ data as an offset."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/aj
     
     <a class="navbar-brand me-2" href="../index.html">offsetreg</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,6 +22,9 @@ data as an offset."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/aj
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
@@ -100,6 +103,26 @@ details.</p>
     <div class="dont-index"><p><code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">stats::glm()</a></code></p></div>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">us_deaths</span><span class="op">$</span><span class="va">off</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">us_deaths</span><span class="op">$</span><span class="va">population</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">glm_offset</span><span class="op">(</span><span class="va">deaths</span> <span class="op">~</span> <span class="va">age_group</span> <span class="op">+</span> <span class="va">gender</span>, family <span class="op">=</span> <span class="st">"poisson"</span>,</span></span>
+<span class="r-in"><span>           <span class="va">us_deaths</span>, offset_col <span class="op">=</span> <span class="st">"off"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Call:  stats::glm(formula = formula, family = family, data = data, offset = offset)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    (Intercept)  age_group35-44  age_group45-54  age_group55-64  age_group65-74  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        -6.8842          0.4426          1.2114          1.9908          2.7147  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> age_group75-84    age_group85+      genderMale  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         3.6465          4.7707          0.3280  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Degrees of Freedom: 139 Total (i.e. Null);  132 Residual</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Null Deviance:	    51700000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residual Deviance: 245000 	AIC: 246900</span>
+<span class="r-in"><span></span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
 

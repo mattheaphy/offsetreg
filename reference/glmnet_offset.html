@@ -12,7 +12,7 @@ x as an offset."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/
     
     <a class="navbar-brand me-2" href="../index.html">offsetreg</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,6 +22,9 @@ x as an offset."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
@@ -119,6 +122,93 @@ full details.</p>
     <div class="dont-index"><p><code><a href="https://glmnet.stanford.edu/reference/glmnet.html" class="external-link">glmnet::glmnet()</a></code></p></div>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">us_deaths</span><span class="op">$</span><span class="va">off</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">us_deaths</span><span class="op">$</span><span class="va">population</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html" class="external-link">model.matrix</a></span><span class="op">(</span><span class="op">~</span> <span class="va">age_group</span> <span class="op">+</span> <span class="va">gender</span> <span class="op">+</span> <span class="va">off</span>, <span class="va">us_deaths</span><span class="op">)</span><span class="op">[</span>, <span class="op">-</span><span class="fl">1</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="fu">glmnet_offset</span><span class="op">(</span><span class="va">x</span>, <span class="va">us_deaths</span><span class="op">$</span><span class="va">deaths</span>, family <span class="op">=</span> <span class="st">"poisson"</span>, offset_col <span class="op">=</span> <span class="st">"off"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Call:  glmnet::glmnet(x = x, y = y, family = family, weights = weights,      offset = offsets, alpha = alpha, lambda = lambda) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Df  %Dev Lambda</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   0  0.00 159700</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   1 19.30 145600</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   1 29.40 132600</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4   1 35.78 120800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5   1 40.18 110100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6   2 44.76 100300</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7   2 52.46  91410</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8   2 58.11  83290</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9   2 62.41  75890</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10  2 65.75  69150</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11  2 68.40  63010</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12  3 70.59  57410</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13  4 73.19  52310</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14  4 76.34  47660</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15  4 78.94  43430</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16  4 81.10  39570</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17  4 82.91  36050</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18  4 84.42  32850</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19  4 85.70  29930</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20  4 86.77  27270</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21  5 87.80  24850</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22  5 88.77  22640</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23  6 89.91  20630</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24  6 91.14  18800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25  6 92.19  17130</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26  6 93.08  15610</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27  6 93.85  14220</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28  6 94.50  12960</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29  6 95.05  11810</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30  6 95.52  10760</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31  6 95.92   9802</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32  6 96.27   8931</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33  6 96.56   8138</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34  6 96.80   7415</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35  6 97.01   6756</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 36  6 97.19   6156</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37  6 97.34   5609</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 38  7 97.48   5111</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 39  7 97.75   4657</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 40  7 98.00   4243</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 41  7 98.21   3866</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 42  7 98.39   3523</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 43  7 98.55   3210</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 44  7 98.69   2925</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 45  7 98.81   2665</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 46  7 98.91   2428</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 47  7 99.00   2212</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 48  6 99.08   2016</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 49  6 99.13   1837</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 50  6 99.17   1674</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 51  6 99.21   1525</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 52  6 99.24   1389</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 53  6 99.26   1266</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 54  6 99.29   1153</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 55  6 99.30   1051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 56  6 99.32    958</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 57  6 99.33    873</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 58  7 99.36    795</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 59  7 99.38    724</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 60  7 99.41    660</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 61  7 99.42    601</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 62  7 99.44    548</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 63  7 99.45    499</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 64  7 99.46    455</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 65  7 99.47    414</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 66  7 99.48    378</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 67  7 99.49    344</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 68  7 99.49    314</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 69  7 99.50    286</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 70  7 99.50    260</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 71  7 99.51    237</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 72  7 99.51    216</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 73  7 99.51    197</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 74  7 99.51    179</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 75  7 99.52    164</span>
+<span class="r-in"><span></span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
 

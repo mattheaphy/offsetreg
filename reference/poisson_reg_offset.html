@@ -12,7 +12,7 @@ an offset that follow a Poisson distribution."><!-- mathjax --><script src="http
     
     <a class="navbar-brand me-2" href="../index.html">offsetreg</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,6 +22,9 @@ an offset that follow a Poisson distribution."><!-- mathjax --><script src="http
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
@@ -85,6 +88,15 @@ to use for fitting.</p></dd>
 
 </dl></div>
     <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    
+
+<p>A model specification object with the classes <code>poisson_reg_offset</code></p>
+
+
+<p>and <code>model_spec</code>.</p>
+    </div>
+    <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>This function is similar to <code><a href="https://parsnip.tidymodels.org/reference/poisson_reg.html" class="external-link">parsnip::poisson_reg()</a></code> except that
 specification of an offset column is required.</p>
@@ -94,6 +106,41 @@ specification of an offset column is required.</p>
     <div class="dont-index"><p><code><a href="https://parsnip.tidymodels.org/reference/poisson_reg.html" class="external-link">parsnip::poisson_reg()</a></code></p></div>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">parsnip</span><span class="fu">::</span><span class="fu"><a href="https://parsnip.tidymodels.org/reference/set_new_model.html" class="external-link">show_model_info</a></span><span class="op">(</span><span class="st">"poisson_reg_offset"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Information for `poisson_reg_offset`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  modes: unknown, regression </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  engines: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    regression: glm_offset, glmnet_offset¹</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ¹The model can use case weights.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  arguments: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    glmnet_offset: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       penalty --&gt; lambda</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       mixture --&gt; alpha</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  fit modules:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           engine       mode</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       glm_offset regression</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    glmnet_offset regression</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  prediction modules:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          mode        engine      methods</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    regression    glm_offset numeric, raw</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    regression glmnet_offset numeric, raw</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">poisson_reg_offset</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Poisson Regression with Offsets Model Specification (regression)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Computational engine: glm_offset </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span></span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
 
