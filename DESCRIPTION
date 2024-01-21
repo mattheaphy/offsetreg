@@ -2,7 +2,7 @@ Package: offsetreg
 Title: An Extension of Tidymodels Supporting Offset Terms
 Version: 1.0.0
 Authors@R: 
-    person("Matt", "Heaphy", email = "mattrmattrs@gmail.com", role = c("aut", "cre"))
+    person("Matt", "Heaphy", email = "mattrmattrs@gmail.com", role = c("aut", "cre", "cph"))
 Maintainer: Matt Heaphy <mattrmattrs@gmail.com>    
 Description: This package provides functions that extend the 'tidymodels' 
     ecosystem <https://www.tidymodels.org/> to enable usage of predictive models
