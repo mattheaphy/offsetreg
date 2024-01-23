@@ -48,6 +48,12 @@ Model engines
 
 ## Installation
 
+The offsetreg package can be installed from CRAN with:
+
+``` r
+install.packages("offsetreg")
+```
+
 You can install the development version of offsetreg from
 [GitHub](https://github.com/) with:
 
