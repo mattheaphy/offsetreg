@@ -20,7 +20,7 @@ RoxygenNote: 7.3.0
 Imports: 
     generics,
     glue,
-    parsnip,
+    parsnip (>= 1.2.0),
     poissonreg,
     rlang,
     stats
