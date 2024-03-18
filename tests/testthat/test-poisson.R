@@ -14,6 +14,17 @@ rec <- recipes::recipe(deaths ~ gender + age_group + year + off,
                        data = us_deaths) |>
   recipes::step_rename(offset = off)
 
+test_that("Error checks trigger", {
+  expect_error(glm_offset(data = 1),
+               regexp = "`data` must be a data frame")
+  expect_error(glm_offset(deaths ~ age_group, data = us_deaths,
+                          offset_col = "x"),
+               regexp = "A column named `x` must be present")
+  expect_error(glmnet_offset(x_off, y, offset_col = "x"),
+               regexp = "A column named `x` must be present")
+})
+
+
 test_that("*_offset() models work", {
 
   # glm_offset
