@@ -29,7 +29,7 @@ make_poisson_reg_glm_offset <- function() {
     mode = "regression",
     value = list(
       interface = "formula",
-      protect = c("formula", "data"),
+      protect = c("formula", "data", "weights"),
       func = c(pkg = "offsetreg", fun = "glm_offset"),
       defaults = list(family = "poisson", offset_col = "offset")
     )

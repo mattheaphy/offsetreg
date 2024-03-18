@@ -33,7 +33,7 @@
 #' @seealso [stats::glm()]
 #' @export
 glm_offset <- function(formula, family = "gaussian", data,
-                       offset_col = "offset", weights) {
+                       offset_col = "offset", weights = NULL) {
 
   if (!is.data.frame(data)) {
     rlang::abort("`data` must be a data frame.")
@@ -45,21 +45,15 @@ glm_offset <- function(formula, family = "gaussian", data,
   # rename the offset column
   data <- .offset_rename(data, offset_col)
   # drop the offset term from the model formula
-  formula_str <- as.character(formula)
-  if (grepl("(\\s|^)\\.(\\s|$)", formula_str[[3]])) {
-    # string manipulation is required because R will return an error
-    # if update is called on a formula with `.` on the RHS
-    formula <- paste(formula_str[[2]], "~",
-                     formula_str[[3]], "-", offset_col) |>
-      stats::as.formula()
-  } else {
-    formula <- stats::update(formula, paste("~ . -", offset_col))
-  }
+  formula <- .formula_drop_right(formula, offset_col)
 
+  # bind weights to the formula's environment to avoid an error in model.frame
+  rlang::env_bind(environment(formula), weights = weights)
   stats::glm(formula,
              family = family,
              offset = offset,
-             data = data)
+             data = data,
+             weights = weights)
 
 }
 
@@ -74,4 +68,18 @@ glm_offset <- function(formula, family = "gaussian", data,
 .predict_pre_offset_rename <- function(data, object) {
   offset_col <- eval_tidy(object$spec$eng_args$offset_col) %||% "offset"
   .offset_rename(data, offset_col)
+}
+
+# internal function to drop column x from the right side of a formula
+.formula_drop_right <- function(formula, x) {
+  formula_str <- as.character(formula)
+  if (grepl("(\\s|^)\\.(\\s|$)", formula_str[[3]])) {
+    # string manipulation is required because R will return an error
+    # if update is called on a formula with `.` on the RHS
+    paste(formula_str[[2]], "~",
+          formula_str[[3]], "-", x) |>
+      stats::as.formula()
+  } else {
+    stats::update(formula, paste("~ . -", x))
+  }
 }
