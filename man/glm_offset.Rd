@@ -4,7 +4,13 @@
 \alias{glm_offset}
 \title{Fit Generalized Linear Models with an Offset}
 \usage{
-glm_offset(formula, family = "gaussian", data, offset_col = "offset", weights)
+glm_offset(
+  formula,
+  family = "gaussian",
+  data,
+  offset_col = "offset",
+  weights = NULL
+)
 }
 \arguments{
 \item{formula}{A model formula}
@@ -17,7 +23,7 @@ and error distribution.}
 \item{offset_col}{Character string. The name of a column in \code{data} containing
 offsets.}
 
-\item{weights}{Weights to use in the fitting process.}
+\item{weights}{Optional weights to use in the fitting process.}
 }
 \value{
 A \code{glm} object. See \code{\link[stats:glm]{stats::glm()}} for full details.

@@ -25,7 +25,7 @@ and error distribution.}
 \item{offset_col}{Character string. The name of a column in \code{data} containing
 offsets.}
 
-\item{weights}{Weights to use in the fitting process.}
+\item{weights}{Optional weights to use in the fitting process.}
 
 \item{lambda}{A numeric vector of regularization penalty values}
 

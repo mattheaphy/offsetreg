@@ -21,7 +21,7 @@
 #' @param data Optional. A data frame containing variables used in the model.
 #' @param offset_col Character string. The name of a column in `data` containing
 #' offsets.
-#' @param weights Weights to use in the fitting process.
+#' @param weights Optional weights to use in the fitting process.
 #'
 #' @returns A `glm` object. See [stats::glm()] for full details.
 #'
