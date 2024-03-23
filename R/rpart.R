@@ -35,13 +35,13 @@
 #'
 #' @examples
 #' rpart_exposure(deaths ~ age_group + gender, us_deaths,
-#'                        exposure_col = "population")
+#'                exposure_col = "population")
 #'
 #' @seealso [rpart::rpart()]
 #' @export
 rpart_exposure <- function(formula, data,
-                                   exposure_col = "exposure", weights = NULL,
-                                   control, cost, shrink = 1, ...) {
+                           exposure_col = "exposure", weights = NULL,
+                           control, cost, shrink = 1, ...) {
 
   rlang::check_installed("rpart")
 
