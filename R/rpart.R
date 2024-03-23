@@ -4,12 +4,12 @@
 #' trees using weighted exposures (observation times).
 #'
 #' @details
-#' Outside of the `tidymodels` ecosystem, `rpart_poisson_exposure()` has no
+#' Outside of the `tidymodels` ecosystem, `rpart_exposure()` has no
 #' advantages over [rpart::rpart()] since that function allows for exposures to
 #' be specified in the formula interface by passing `cbind(exposure, y)` as a
 #' response variable.
 #'
-#' Within `tidymodels`, `rpart_poisson_exposure()` provides an advantage because
+#' Within `tidymodels`, `rpart_exposure()` provides an advantage because
 #' it will ensure that exposures are included in the data whenever resamples are
 #' created.
 #'
@@ -34,12 +34,12 @@
 #' @returns An `rpart` model
 #'
 #' @examples
-#' rpart_poisson_exposure(deaths ~ age_group + gender, us_deaths,
+#' rpart_exposure(deaths ~ age_group + gender, us_deaths,
 #'                        exposure_col = "population")
 #'
 #' @seealso [rpart::rpart()]
 #' @export
-rpart_poisson_exposure <- function(formula, data,
+rpart_exposure <- function(formula, data,
                                    exposure_col = "exposure", weights = NULL,
                                    control, cost, shrink = 1, ...) {
 
