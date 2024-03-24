@@ -53,7 +53,7 @@ rpart_exposure <- function(formula, data,
   }
 
   # rename the exposure column
-  data <- .offset_rename(data, exposure_col)
+  data <- .offset_rename(data, exposure_col, "exposure")
 
   # modify the formula to remove exposures from the right-hand side and
   #   add exposures to the left-hand side via cbind
@@ -75,6 +75,6 @@ rpart_exposure <- function(formula, data,
                         " response variable."))
   }
   formula_str <- as.character(formula)
-  glue("cbind(offset, {formula_str[[2]]}) ~ {formula_str[[3]]}") |>
+  glue("cbind(exposure, {formula_str[[2]]}) ~ {formula_str[[3]]}") |>
     stats::as.formula()
 }
