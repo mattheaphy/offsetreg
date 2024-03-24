@@ -35,16 +35,19 @@ modeling functions. These engines all include the argument `offset_col`
 which is used to specify which column in the data passed to the engine
 contains offsets.
 
-Currently, the following functions are available:
+Currently, the following model specifications and engines are available:
 
 Model specifications:
 
-- `poisson_reg_offset()` - create a Poisson GLM spec
+- `poisson_reg_offset()` - create a Poisson GLM spec. Engines:
 
-Model engines
+  - `glm_offset()` - a wrapper around `stats::glm()`
+  - `glmnet_offset()` - a wrapper around `glmnet::glmnet()`
 
-- `glm_offset()` - a wrapper around `stats::glm()`
-- `glmnet_offset()` - a wrapper around `glmnet::glmnet()`
+- `decision_tree_exposure()` - create a Poisson decision tree with
+  weighted exposures. Engines:
+
+  - `rpart_exposure()` - a wrapper around `rpart::rpart()`
 
 ## Installation
 
