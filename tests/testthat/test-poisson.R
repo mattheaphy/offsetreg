@@ -83,7 +83,7 @@ test_that("poisson_reg_offset() works with recipes", {
     workflows::add_model(poisson_reg_offset(penalty = 1E-5, mixture = 0.25) |>
                            set_engine("glmnet_offset")) |>
     fit(data = us_deaths)
-  # re-do the baseline glmnet fix - columns are in a different order after the
+  # re-do the baseline glmnet fit - columns are in a different order after the
   # recipe
   x <- rec |> recipes::prep() |> recipes::juice() |> as.matrix()
   x <- x[, !colnames(x) %in% c("offset", "deaths")]
