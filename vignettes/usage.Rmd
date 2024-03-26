@@ -1,0 +1,179 @@
+---
+title: "When to use offsetreg"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{When to use offsetreg}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+  
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+collapse = TRUE,
+comment = "#>"
+)
+```
+
+This vignette describes the motivation for offsetreg and when its usage becomes necessary.
+
+# When offsetreg is not necessary
+
+For certain use cases, offsets are supported in tidymodels. Generally speaking, for models that allow for offsets to be specified in a model formula, tidymodels works fine out of the box and offsetreg is not needed. The `glm()` function from the stats package is a good example of this.
+
+## Offsets supported in model formulas: `glm()`
+
+Below, a Poisson model is fit using the `us_deaths` data set with an offset equal to the log of population.
+
+```{r glm, message=FALSE, warning=FALSE}
+library(parsnip)
+library(offsetreg)
+library(broom)
+library(recipes)
+library(workflows)
+library(rsample)
+library(tune)
+
+us_deaths$log_pop <- log(us_deaths$population)
+
+poisson_reg() |>
+  set_engine("glm") |>
+  fit(deaths ~ gender + age_group + year + offset(log_pop), 
+      data = us_deaths)
+```
+
+The code above works for a few reasons:
+
+- `fit()` captures the formula expression passed to it, and that formula is allowed to contain calls to other functions, like `offset()`.
+- Since there is no additional pre-processing of the data required, that formula is passed to the `glm()` function as-is, as shown in the call printed above.
+
+Let's assume we want to use a recipe to pre-process our data. In the example below, a bare bones recipe is used to verify that we can reproduce the same coefficients as the original example. Unfortunately, this creates a problem because `recipe()` doesn't allow in-line functions like `offset()`.
+
+```{r glm-rec-error, error = TRUE}
+mod <- poisson_reg() |> set_engine("glm")
+rec <- recipe(deaths ~ gender + age_group + year + offset(log_pop), 
+              data = us_deaths)
+```
+
+As the hint above explains, this error can be avoided by removing the call to `offset()` in the recipe and passing a second formula to `add_model()` as part of a workflow. Note that the variable passed to `offset()` must still be included in the recipe.
+
+```{r glm-rec-fix}
+rec <- recipe(deaths ~ gender + age_group + year + log_pop, 
+              data = us_deaths)
+
+workflow() |> 
+  add_model(mod, 
+            formula = deaths ~ gender + age_group + year + offset(log_pop)) |> 
+  add_recipe(rec) |> 
+  fit(us_deaths)
+```
+
+These coefficients match the first example without a recipe, so we know this model was set up correctly.
+
+## Offsets not supported in model formulas: `glmnet()`
+
+Not all modeling engines allow for offsets to be passed via the formula interface. For example, the `glmnet()` function does not not accept formulas; it requires model matrices. Instead, offsets are passed as a numeric vector using an optional engine-specific `offset` argument.
+
+```{r glmnet}
+poisson_reg(penalty = 1E-5) |>
+  set_engine("glmnet", offset = us_deaths$log_pop) |>
+  fit(deaths ~ year + gender + age_group, 
+      data = us_deaths) |> 
+  tidy()
+
+```
+
+This code works because the argument `offset = us_deaths$log_pop` is captured and passed directly into `glmnet()`.
+
+If we try to use a recipe with an offset passed to the `formula` argument of `add_model()`, a difficult-to-spot problem emerges. The model runs without errors, but a completely different set of coefficients is returned.
+
+```{r glmnet-offset-problem}
+mod_glmnet <- poisson_reg(penalty = 1E-5) |> set_engine("glmnet")
+rec <- recipe(deaths ~ year + gender + age_group + log_pop, 
+              data = us_deaths)
+
+workflow() |> 
+  add_model(mod_glmnet, 
+            formula = deaths ~ year + gender + age_group + offset(log_pop)) |> 
+  add_recipe(rec) |> 
+  fit(us_deaths) |> 
+  tidy()
+```
+
+What happened here? Since `glmnet()` doesn't natively support the formula interface, it doesn't know what to do with the `offset()` term passed to the formula. Under the hood, the `offset()` term is quietly dropped in a call to `model.matrix()` that is used to convert the formula to a matrix format acceptable to `glmnet()`.
+
+```{r mat-drop, fig.cap="The offset term is dropped by model.matrix()"}
+model.matrix(deaths ~ year + gender + age_group + offset(log_pop),
+             us_deaths) |> 
+  head()
+```
+
+As a result, the model is exactly what we would see if there were no offset terms to begin with. This is a situation when offsetreg is required.
+
+# When offsetreg is necessary
+
+offsetreg becomes necessary when the underlying modeling engine does not support offsets in formulas **and** either of these tasks are performed:
+
+- A pre-processing recipe is applied to the data
+- Resampling is performed, often in conjunction with hyperparameter tuning
+
+## Using `recipe()` when offsets cannot be specified in a formula
+
+Let's continue with the last example. The problem can be addressed using offsetreg as follows:
+
+- Replace `poisson_reg()` with `poisson_reg_offset()`
+- Replace the "glmnet" engine with "glmnet_offset" and provide the name of the offset column
+- Remove the `formula` argument in `add_model()`
+- Add a call to `step_dummy()`. This step was previously not necessary when `formula` was passed to `add_model()`.
+
+```{r glmnet-offset-fix}
+mod_offset <- poisson_reg_offset(penalty = 1E-5) |> 
+  set_engine("glmnet_offset", offset_col = "log_pop")
+rec <- recipe(deaths ~ year + gender + age_group + log_pop, 
+              data = us_deaths) |> 
+  step_dummy(all_nominal_predictors())
+
+workflow() |> 
+  add_model(mod_offset) |> 
+  add_recipe(rec) |> 
+  fit(us_deaths) |> 
+  tidy()
+```
+
+## Resampling when offsets cannot be specified in a formula
+
+For models like `glmnet()` where offsets can only be specified as a numeric vector in engine-specific arguments, resampling presents a few challenges:
+
+- tidymodels is only aware of the numeric vector of offsets that has been passed and there is no defined relationship between individual observations and their associated offsets. As a result, when resampling occurs, offsets aren't carried over to resampled data sets.
+- Related, and pertinent to `glmnet()`, if the `predict()` function requires offset terms, there is no mechanism to pass those along, which will result in an error.
+
+Below is what happens if we attempt to fit 5 bootstrap resamples of the `us_deaths` data set without offsetreg.
+
+```{r resamples-glmnet-problem, error=TRUE}
+resamples <- bootstraps(us_deaths, times = 5)
+
+mod_glmnet <- poisson_reg(penalty = 1E-5) |> 
+  set_engine("glmnet", offset = us_deaths$log_pop)
+
+workflow() |>
+  add_recipe(rec) |>
+  add_model(mod_glmnet) |>
+  fit_resamples(resamples) |>
+  collect_metrics()
+```
+
+All models failed to fit, and we receive a specific error message about no offsets being available for predictions.
+
+```{r}
+show_notes(.Last.tune.result)
+```
+
+With offsetreg, this code performs as expected. offsetreg works because behind the scenes it ensures that offset terms are attached to the data at all times, which enables resampling and predictions to function without error.
+
+```{r resamples-glmnet-fix}
+workflow() |>
+    add_recipe(rec) |>
+    add_model(mod_offset) |>
+    fit_resamples(resamples) |>
+    collect_metrics()
+```
+

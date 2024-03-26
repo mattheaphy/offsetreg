@@ -24,14 +24,19 @@ Imports:
     poissonreg,
     rlang,
     stats
-Suggests: 
+Suggests:
+    broom,
     glmnet,
+    knitr,
     recipes,
+    rmarkdown,
     rpart,
     testthat (>= 3.0.0),
-    tune,
-    workflows
+    tune
+    workflows,
+    rsample
 Config/testthat/edition: 3
 Depends: 
     R (>= 4.1)
 LazyData: true
+VignetteBuilder: knitr

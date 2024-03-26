@@ -34,8 +34,6 @@ In general, offsetreg functions are named after existing functions from tidymode
 
 Currently, the following model specifications and engines are available:
 
-Model specifications:
-
 - `poisson_reg_offset()` - create a Poisson GLM spec. Engines:
 
   - `glm_offset()` - a wrapper around `stats::glm()`
@@ -64,9 +62,10 @@ devtools::install_github("mattheaphy/offsetreg")
 
 The `us_deaths` data set contains United States deaths, population estimates, and crude mortality rates for ages 25+ from the CDC Multiple Causes of Death Files for the years 2011-2020.
 
-```{r data}
+```{r data, warning=FALSE, message=FALSE}
 library(offsetreg)
 library(parsnip)
+
 us_deaths
 ```
 

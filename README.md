@@ -37,8 +37,6 @@ contains offsets.
 
 Currently, the following model specifications and engines are available:
 
-Model specifications:
-
 - `poisson_reg_offset()` - create a Poisson GLM spec. Engines:
 
   - `glm_offset()` - a wrapper around `stats::glm()`
@@ -74,7 +72,7 @@ Causes of Death Files for the years 2011-2020.
 ``` r
 library(offsetreg)
 library(parsnip)
-#> Warning: package 'parsnip' was built under R version 4.2.3
+
 us_deaths
 #> # A tibble: 140 × 6
 #>    gender age_group  year deaths population       qx
