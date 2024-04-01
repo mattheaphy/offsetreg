@@ -102,12 +102,11 @@ xgb_train_offset <- function(
       watchlist = quote(x$watchlist),
       params = arg_list,
       nrounds = nrounds,
-      early_stopping_rounds = early_stop
+      early_stopping_rounds = early_stop,
+      objective = "count:poisson"
     ),
     others
   )
-
-  main_args$objective <- "count:poisson"
 
   call <- make_call(fun = "xgb.train", ns = "xgboost", main_args)
 
