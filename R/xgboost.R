@@ -1,4 +1,4 @@
-#' Boosted Poisson Tees with Offsets via `xgboost`
+#' Boosted Poisson Trees with Offsets via `xgboost`
 #'
 #' `xgb_train_offset()` and `xgb_predict_offset()` are wrappers for `xgboost`
 #' tree-based models where all of the model arguments are in the main function.

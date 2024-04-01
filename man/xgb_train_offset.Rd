@@ -3,7 +3,7 @@
 \name{xgb_train_offset}
 \alias{xgb_train_offset}
 \alias{xgb_predict_offset}
-\title{Boosted Poisson Tees with Offsets via \code{xgboost}}
+\title{Boosted Poisson Trees with Offsets via \code{xgboost}}
 \usage{
 xgb_train_offset(
   x,
