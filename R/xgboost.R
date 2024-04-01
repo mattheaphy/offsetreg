@@ -207,7 +207,7 @@ maybe_proportion <- function(x, nm) {
 # code from the parsnip package with small edits
 process_others <- function(others, arg_list) {
 
-  guarded <- c("data", "weights", "num_class", "watchlist")
+  guarded <- c("data", "weights", "watchlist", "objective")
   guarded_supplied <- names(others)[names(others) %in% guarded]
 
   n <- length(guarded_supplied)
