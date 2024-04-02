@@ -1,25 +1,25 @@
 make_decision_tree_rpart_exposure <- function() {
 
-  parsnip::set_model_engine(
+  set_model_engine(
     "decision_tree_exposure",
     mode = "regression",
     eng = "rpart_exposure")
 
-  parsnip::set_dependency(
+  set_dependency(
     "decision_tree_exposure",
     eng = "rpart_exposure",
     pkg = "rpart",
     mode = "regression"
   )
 
-  parsnip::set_dependency(
+  set_dependency(
     "decision_tree_exposure",
     eng = "rpart_exposure",
     pkg = "offsetreg",
     mode = "regression"
   )
 
-  parsnip::set_model_arg(
+  set_model_arg(
     model = "decision_tree_exposure",
     eng = "rpart_exposure",
     parsnip = "cost_complexity",
@@ -28,7 +28,7 @@ make_decision_tree_rpart_exposure <- function() {
     has_submodel = FALSE
   )
 
-  parsnip::set_model_arg(
+  set_model_arg(
     model = "decision_tree_exposure",
     eng = "rpart_exposure",
     parsnip = "min_n",
@@ -37,7 +37,7 @@ make_decision_tree_rpart_exposure <- function() {
     has_submodel = FALSE
   )
 
-  parsnip::set_model_arg(
+  set_model_arg(
     model = "decision_tree_exposure",
     eng = "rpart_exposure",
     parsnip = "tree_depth",
@@ -46,7 +46,7 @@ make_decision_tree_rpart_exposure <- function() {
     has_submodel = FALSE
   )
 
-  parsnip::set_fit(
+  set_fit(
     model = "decision_tree_exposure",
     eng = "rpart_exposure",
     mode = "regression",
@@ -58,7 +58,7 @@ make_decision_tree_rpart_exposure <- function() {
     )
   )
 
-  parsnip::set_encoding(
+  set_encoding(
     model = "decision_tree_exposure",
     eng = "rpart_exposure",
     mode = "regression",
@@ -70,7 +70,7 @@ make_decision_tree_rpart_exposure <- function() {
     )
   )
 
-  parsnip::set_pred(
+  set_pred(
     model = "decision_tree_exposure",
     eng = "rpart_exposure",
     mode = "regression",
@@ -84,7 +84,7 @@ make_decision_tree_rpart_exposure <- function() {
     )
   )
 
-  parsnip::set_pred(
+  set_pred(
     model = "decision_tree_exposure",
     eng = "rpart_exposure",
     mode = "regression",
