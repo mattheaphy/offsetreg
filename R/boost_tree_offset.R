@@ -48,7 +48,7 @@ boost_tree_offset <- function(mode = "regression",
 
   # Save some empty slots for future parts of the specification
   new_model_spec(
-    "xgboost_offset",
+    "boost_tree_offset",
     args = args,
     eng_args = NULL,
     mode = mode,
