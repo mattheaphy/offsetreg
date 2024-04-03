@@ -29,23 +29,28 @@ insurance where industry mortality tables are often used as a starting
 point for setting assumptions on a particular block of business.
 
 In general, offsetreg functions are named after existing functions from
-tidymodels or other modeling package suffixed by `_offset`. The modeling
-engines in this package are wrappers around existing, well-known
-modeling functions. These engines all include the argument `offset_col`
-which is used to specify which column in the data passed to the engine
-contains offsets.
+tidymodels or other modeling packages suffixed by `_offset` (or
+`_exposure`). The modeling engines in this package are wrappers around
+existing, well-known modeling functions. These engines all include the
+argument `offset_col` (or `exposure_col`) which is used to specify which
+column in the data passed to the engine contains offsets.
 
 Currently, the following model specifications and engines are available:
 
 - `poisson_reg_offset()` - create a Poisson GLM spec. Engines:
 
-  - `glm_offset()` - a wrapper around `stats::glm()`
-  - `glmnet_offset()` - a wrapper around `glmnet::glmnet()`
+  - `glm_offset` - a wrapper around `stats::glm()`
+  - `glmnet_offset` - a wrapper around `glmnet::glmnet()`
+
+- `boost_tree_offset()` - create an ensemble of boosted Poisson decision
+  trees. Engines:
+
+  - `xgboost_offset` - a wrapper around `xgboost::xgb.train()`
 
 - `decision_tree_exposure()` - create a Poisson decision tree with
   weighted exposures. Engines:
 
-  - `rpart_exposure()` - a wrapper around `rpart::rpart()`
+  - `rpart_exposure` - a wrapper around `rpart::rpart()`
 
 ## Installation
 
@@ -116,7 +121,8 @@ glm_off
 #> parsnip model object
 #> 
 #> 
-#> Call:  stats::glm(formula = formula, family = family, data = data, offset = offset)
+#> Call:  stats::glm(formula = formula, family = family, data = data, weights = weights, 
+#>     offset = offset)
 #> 
 #> Coefficients:
 #>    (Intercept)      genderMale  age_group35-44  age_group45-54  age_group55-64  
