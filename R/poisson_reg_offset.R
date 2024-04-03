@@ -1,7 +1,7 @@
 #' Poisson regression models with offsets
 #'
 #' `poisson_reg_offset()` defines a generalized linear model of count data with
-#' an offset that follow a Poisson distribution.
+#' an offset that follows a Poisson distribution.
 #'
 #' This function is similar to [parsnip::poisson_reg()] except that
 #' specification of an offset column is required.
