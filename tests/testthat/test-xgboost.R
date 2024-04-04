@@ -84,3 +84,58 @@ test_that("boost_tree_offset() works", {
                    predict(xgb_off, us_deaths, type = "raw"))
 
 })
+
+rec <- recipes::recipe(deaths ~ age_group + gender + year + off, us_deaths) |>
+  recipes::step_dummy(age_group, gender, one_hot = TRUE) |>
+  recipes::step_rename(offset = off)
+
+test_that("boost_tree_offset() works with recipes", {
+
+  # rpart_exposure
+  xgb_off <- workflows::workflow() |>
+    workflows::add_recipe(rec) |>
+    workflows::add_model(boost_tree_offset(learn_rate = 1,
+                                           sample_size = 1,
+                                           mtry = 11,
+                                           min_n = 1,
+                                           tree_depth = 2,
+                                           trees = 25) |>
+                           set_engine("xgboost_offset")) |>
+    fit(data = us_deaths)
+  expect_identical(predict(mod, xgtrain),
+                   predict(xgb_off, us_deaths)$.pred)
+
+})
+
+test_that("finalize works", {
+
+  mod_spec <- boost_tree_offset(mtry = tune(),
+                                trees = tune(),
+                                min_n = tune(),
+                                tree_depth = tune(),
+                                learn_rate = tune(),
+                                loss_reduction = tune(),
+                                sample_size = tune(),
+                                stop_iter = tune()) |>
+    set_engine("xgboost_offset")
+
+  wf <- workflows::workflow() |>
+    workflows::add_model(mod_spec) |>
+    workflows::add_recipe(rec)
+
+  param_grid <- data.frame(mtry = 4,
+                           trees = 11,
+                           min_n = 2,
+                           tree_depth = 3,
+                           learn_rate = 0.3,
+                           loss_reduction = 0,
+                           sample_size = 0.7,
+                           stop_iter = 7)
+
+  expect_no_error(tune::finalize_workflow(wf, param_grid) |> fit(us_deaths))
+
+  expect_equal(tune::finalize_model(mod_spec, param_grid)$args |>
+                 lapply(rlang::eval_tidy),
+               as.list(param_grid))
+
+})
