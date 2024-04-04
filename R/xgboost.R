@@ -258,6 +258,6 @@ xgb_predict_offset <- function(object, new_data, offset_col = "offset", ...) {
     }
   }
 
-  predict(object, new_data, ...)
+  stats::predict(object, new_data, ...)
 
 }
