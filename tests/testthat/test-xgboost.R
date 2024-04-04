@@ -1,3 +1,5 @@
+library(parsnip)
+
 us_deaths$off <- log(us_deaths$population)
 
 us_deaths2 <- recipes::recipe(~ age_group + gender + year + off, us_deaths) |>
