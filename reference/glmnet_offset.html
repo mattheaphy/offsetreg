@@ -12,7 +12,7 @@ x as an offset."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/
     
     <a class="navbar-brand me-2" href="../index.html">offsetreg</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,6 +22,12 @@ x as an offset."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
+</li>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/usage.html">When to use offsetreg</a>
+  </div>
 </li>
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
@@ -48,7 +54,7 @@ x as an offset."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/
     </div>
 
     <div class="ref-description section level2">
-    <p>This function is a wrapper around <code><a href="https://glmnet.stanford.edu/reference/glmnet.html" class="external-link">glmnet::glmnet()</a></code> that uses a column from
+    <p>This function is a wrapper around <code><a href="https://rdrr.io/pkg/glmnet/man/glmnet.html" class="external-link">glmnet::glmnet()</a></code> that uses a column from
 <code>x</code> as an offset.</p>
     </div>
 
@@ -86,7 +92,7 @@ offsets.</p></dd>
 
 
 <dt>weights</dt>
-<dd><p>Weights to use in the fitting process.</p></dd>
+<dd><p>Optional weights to use in the fitting process.</p></dd>
 
 
 <dt>lambda</dt>
@@ -104,22 +110,22 @@ offsets.</p></dd>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>A <code>glmnet</code> object. See <code><a href="https://glmnet.stanford.edu/reference/glmnet.html" class="external-link">glmnet::glmnet()</a></code> for full details.</p>
+<p>A <code>glmnet</code> object. See <code><a href="https://rdrr.io/pkg/glmnet/man/glmnet.html" class="external-link">glmnet::glmnet()</a></code> for full details.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Outside of the <code>tidymodels</code> ecosystem, <code>glmnet_offset()</code> has no advantages
-over <code><a href="https://glmnet.stanford.edu/reference/glmnet.html" class="external-link">glmnet::glmnet()</a></code> since that function allows for offsets to be
+over <code><a href="https://rdrr.io/pkg/glmnet/man/glmnet.html" class="external-link">glmnet::glmnet()</a></code> since that function allows for offsets to be
 specified in its <code>offset</code> argument.</p>
 <p>Within <code>tidymodels</code>, <code>glmnet_offset()</code> provides an advantage because it will
 ensure that offsets are included in the data whenever resamples are created.</p>
 <p>The <code>x</code>, <code>y</code>, <code>family</code>, <code>lambda</code>, <code>alpha</code> and <code>weights</code> arguments have the
-same meanings as <code><a href="https://glmnet.stanford.edu/reference/glmnet.html" class="external-link">glmnet::glmnet()</a></code>. See that function's documentation for
+same meanings as <code><a href="https://rdrr.io/pkg/glmnet/man/glmnet.html" class="external-link">glmnet::glmnet()</a></code>. See that function's documentation for
 full details.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="https://glmnet.stanford.edu/reference/glmnet.html" class="external-link">glmnet::glmnet()</a></code></p></div>
+    <div class="dont-index"><p><code><a href="https://rdrr.io/pkg/glmnet/man/glmnet.html" class="external-link">glmnet::glmnet()</a></code></p></div>
     </div>
 
     <div class="section level2">

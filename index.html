@@ -38,7 +38,7 @@
     
     <a class="navbar-brand me-2" href="index.html">offsetreg</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,6 +49,12 @@
       <ul class="navbar-nav me-auto">
 <li class="nav-item">
   <a class="nav-link" href="reference/index.html">Reference</a>
+</li>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="articles/usage.html">When to use offsetreg</a>
+  </div>
 </li>
 <li class="nav-item">
   <a class="nav-link" href="news/index.html">Changelog</a>
@@ -80,20 +86,35 @@
 <p>This package extends the <a href="https://www.tidymodels.org" class="external-link">tidymodels</a> ecosystem to enable usage of predictive models with offset terms. Offset terms are predictors in a linear model that with a known <em>a priori</em> value. In other words, these terms do not have an associated coefficient (<span class="math inline"><em>β</em><sub><em>i</em></sub></span>) that needs to be determined. In a generalized linear model (GLM), an offset specification looks like:</p>
 <p><span class="math display"><em>Ŷ</em> = <em>g</em><sup>−1</sup>(<em>o</em><em>f</em><em>f</em><em>s</em><em>e</em><em>t</em>+<em>β</em><sub>0</sub>+<em>β</em><sub>1</sub><em>X</em><sub>1</sub>+<em>β</em><sub>2</sub><em>X</em><sub>2</sub>+…+<em>β</em><sub><em>p</em></sub><em>X</em><sub><em>p</em></sub>)</span></p>
 <p>Models with offsets are most useful when working with count data or when fitting an adjustment model on top of an existing model with a prior expectation. The former situation is common in insurance where data is often aggregated or weighted by exposures. The latter is common in life insurance where industry mortality tables are often used as a starting point for setting assumptions on a particular block of business.</p>
-<p>In general, offsetreg functions are named after existing functions from tidymodels or other modeling package suffixed by <code>_offset</code>. The modeling engines in this package are wrappers around existing, well-known modeling functions. These engines all include the argument <code>offset_col</code> which is used to specify which column in the data passed to the engine contains offsets.</p>
-<p>Currently, the following functions are available:</p>
-<p>Model specifications:</p>
+<p>In general, offsetreg functions are named after existing functions from tidymodels or other modeling packages suffixed by <code>_offset</code> (or <code>_exposure</code>). The modeling engines in this package are wrappers around existing, well-known modeling functions. These engines all include the argument <code>offset_col</code> (or <code>exposure_col</code>) which is used to specify which column in the data passed to the engine contains offsets.</p>
+<p>Currently, the following model specifications and engines are available:</p>
 <ul>
 <li>
-<code><a href="reference/poisson_reg_offset.html">poisson_reg_offset()</a></code> - create a Poisson GLM spec</li>
-</ul>
-<p>Model engines</p>
+<p><code><a href="reference/poisson_reg_offset.html">poisson_reg_offset()</a></code> - create a Poisson GLM spec. Engines:</p>
 <ul>
 <li>
-<code><a href="reference/glm_offset.html">glm_offset()</a></code> - a wrapper around <code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">stats::glm()</a></code>
+<code>glm_offset</code> - a wrapper around <code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">stats::glm()</a></code>
 </li>
 <li>
-<code><a href="reference/glmnet_offset.html">glmnet_offset()</a></code> - a wrapper around <code><a href="https://glmnet.stanford.edu/reference/glmnet.html" class="external-link">glmnet::glmnet()</a></code>
+<code>glmnet_offset</code> - a wrapper around <code><a href="https://rdrr.io/pkg/glmnet/man/glmnet.html" class="external-link">glmnet::glmnet()</a></code>
+</li>
+</ul>
+</li>
+<li>
+<p><code><a href="reference/boost_tree_offset.html">boost_tree_offset()</a></code> - create an ensemble of boosted Poisson decision trees. Engines:</p>
+<ul>
+<li>
+<code>xgboost_offset</code> - a wrapper around <code><a href="https://rdrr.io/pkg/xgboost/man/xgb.train.html" class="external-link">xgboost::xgb.train()</a></code>
+</li>
+</ul>
+</li>
+<li>
+<p><code><a href="reference/decision_tree_exposure.html">decision_tree_exposure()</a></code> - create a Poisson decision tree with weighted exposures. Engines:</p>
+<ul>
+<li>
+<code>rpart_exposure</code> - a wrapper around <code><a href="https://rdrr.io/pkg/rpart/man/rpart.html" class="external-link">rpart::rpart()</a></code>
+</li>
+</ul>
 </li>
 </ul>
 <div class="section level2">
@@ -114,7 +135,7 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mattheaphy/offsetreg/" class="external-link">offsetreg</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tidymodels/parsnip" class="external-link">parsnip</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: package 'parsnip' was built under R version 4.2.3</span></span>
+<span></span>
 <span><span class="va">us_deaths</span></span>
 <span><span class="co">#&gt; # A tibble: 140 × 6</span></span>
 <span><span class="co">#&gt;    gender age_group  year deaths population       qx</span></span>
@@ -146,7 +167,8 @@
 <span><span class="co">#&gt; parsnip model object</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Call:  stats::glm(formula = formula, family = family, data = data, offset = offset)</span></span>
+<span><span class="co">#&gt; Call:  stats::glm(formula = formula, family = family, data = data, weights = weights, </span></span>
+<span><span class="co">#&gt;     offset = offset)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Coefficients:</span></span>
 <span><span class="co">#&gt;    (Intercept)      genderMale  age_group35-44  age_group45-54  age_group55-64  </span></span>

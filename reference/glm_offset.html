@@ -12,7 +12,7 @@ data as an offset."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/aj
     
     <a class="navbar-brand me-2" href="../index.html">offsetreg</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,6 +22,12 @@ data as an offset."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/aj
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
+</li>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/usage.html">When to use offsetreg</a>
+  </div>
 </li>
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
@@ -54,7 +60,13 @@ data as an offset."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/aj
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">glm_offset</span><span class="op">(</span><span class="va">formula</span>, family <span class="op">=</span> <span class="st">"gaussian"</span>, <span class="va">data</span>, offset_col <span class="op">=</span> <span class="st">"offset"</span>, <span class="va">weights</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">glm_offset</span><span class="op">(</span></span>
+<span>  <span class="va">formula</span>,</span>
+<span>  family <span class="op">=</span> <span class="st">"gaussian"</span>,</span>
+<span>  <span class="va">data</span>,</span>
+<span>  offset_col <span class="op">=</span> <span class="st">"offset"</span>,</span>
+<span>  weights <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -78,7 +90,7 @@ offsets.</p></dd>
 
 
 <dt>weights</dt>
-<dd><p>Weights to use in the fitting process.</p></dd>
+<dd><p>Optional weights to use in the fitting process.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -109,7 +121,8 @@ details.</p>
 <span class="r-in"><span><span class="fu">glm_offset</span><span class="op">(</span><span class="va">deaths</span> <span class="op">~</span> <span class="va">age_group</span> <span class="op">+</span> <span class="va">gender</span>, family <span class="op">=</span> <span class="st">"poisson"</span>,</span></span>
 <span class="r-in"><span>           <span class="va">us_deaths</span>, offset_col <span class="op">=</span> <span class="st">"off"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Call:  stats::glm(formula = formula, family = family, data = data, offset = offset)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Call:  stats::glm(formula = formula, family = family, data = data, weights = weights, </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     offset = offset)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    (Intercept)  age_group35-44  age_group45-54  age_group55-64  age_group65-74  </span>

@@ -10,6 +10,12 @@
     <loc>https://mattheaphy.github.io/offsetreg/LICENSE.html</loc>
   </url>
   <url>
+    <loc>https://mattheaphy.github.io/offsetreg/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>https://mattheaphy.github.io/offsetreg/articles/usage.html</loc>
+  </url>
+  <url>
     <loc>https://mattheaphy.github.io/offsetreg/authors.html</loc>
   </url>
   <url>
@@ -17,6 +23,12 @@
   </url>
   <url>
     <loc>https://mattheaphy.github.io/offsetreg/news/index.html</loc>
+  </url>
+  <url>
+    <loc>https://mattheaphy.github.io/offsetreg/reference/boost_tree_offset.html</loc>
+  </url>
+  <url>
+    <loc>https://mattheaphy.github.io/offsetreg/reference/decision_tree_exposure.html</loc>
   </url>
   <url>
     <loc>https://mattheaphy.github.io/offsetreg/reference/glm_offset.html</loc>
@@ -37,6 +49,12 @@
     <loc>https://mattheaphy.github.io/offsetreg/reference/reexports.html</loc>
   </url>
   <url>
+    <loc>https://mattheaphy.github.io/offsetreg/reference/rpart_exposure.html</loc>
+  </url>
+  <url>
     <loc>https://mattheaphy.github.io/offsetreg/reference/us_deaths.html</loc>
+  </url>
+  <url>
+    <loc>https://mattheaphy.github.io/offsetreg/reference/xgb_train_offset.html</loc>
   </url>
 </urlset>

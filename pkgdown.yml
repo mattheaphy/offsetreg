@@ -1,8 +1,9 @@
-pandoc: 2.19.2
+pandoc: 3.1.11
 pkgdown: 2.0.7
 pkgdown_sha: ~
-articles: {}
-last_built: 2024-01-23T15:38Z
+articles:
+  usage: usage.html
+last_built: 2024-04-04T13:27Z
 urls:
   reference: https://mattheaphy.github.io/offsetreg/reference
   article: https://mattheaphy.github.io/offsetreg/articles
