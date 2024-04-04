@@ -54,7 +54,8 @@ xgb_train_offset <- function(
   }
 
   n <- nrow(x)
-  p <- ncol(x)
+  # subtract one column for the offset
+  p <- ncol(x) - 1L
 
   x <- as_xgb_data_offset(x, y, offset_col,
                           validation = validation,
