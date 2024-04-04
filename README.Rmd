@@ -30,18 +30,22 @@ $$
 
 Models with offsets are most useful when working with count data or when fitting an adjustment model on top of an existing model with a prior expectation. The former situation is common in insurance where data is often aggregated or weighted by exposures. The latter is common in life insurance where industry mortality tables are often used as a starting point for setting assumptions on a particular block of business.
 
-In general, offsetreg functions are named after existing functions from tidymodels or other modeling package suffixed by `_offset`. The modeling engines in this package are wrappers around existing, well-known modeling functions. These engines all include the argument `offset_col` which is used to specify which column in the data passed to the engine contains offsets.
+In general, offsetreg functions are named after existing functions from tidymodels or other modeling packages suffixed by `_offset` (or `_exposure`). The modeling engines in this package are wrappers around existing, well-known modeling functions. These engines all include the argument `offset_col` (or `exposure_col`) which is used to specify which column in the data passed to the engine contains offsets.
 
-Currently, the following functions are available:
+Currently, the following model specifications and engines are available:
 
-Model specifications:
+- `poisson_reg_offset()` - create a Poisson GLM spec. Engines:
 
-- `poisson_reg_offset()` - create a Poisson GLM spec
+  - `glm_offset` - a wrapper around `stats::glm()`
+  - `glmnet_offset` - a wrapper around `glmnet::glmnet()`
 
-Model engines
+- `boost_tree_offset()` - create an ensemble of boosted Poisson decision trees. Engines:
 
-- `glm_offset()` - a wrapper around `stats::glm()`
-- `glmnet_offset()` - a wrapper around `glmnet::glmnet()`
+  - `xgboost_offset` - a wrapper around `xgboost::xgb.train()`
+
+- `decision_tree_exposure()` - create a Poisson decision tree with weighted exposures. Engines:
+
+  - `rpart_exposure` - a wrapper around `rpart::rpart()`
 
 ## Installation
 
@@ -62,9 +66,10 @@ devtools::install_github("mattheaphy/offsetreg")
 
 The `us_deaths` data set contains United States deaths, population estimates, and crude mortality rates for ages 25+ from the CDC Multiple Causes of Death Files for the years 2011-2020.
 
-```{r data}
+```{r data, warning=FALSE, message=FALSE}
 library(offsetreg)
 library(parsnip)
+
 us_deaths
 ```
 

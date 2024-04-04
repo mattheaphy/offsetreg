@@ -4,6 +4,7 @@
 \name{reexports}
 \alias{reexports}
 \alias{translate}
+\alias{check_args}
 \alias{min_grid}
 \title{Objects exported from other packages}
 \keyword{internal}
@@ -14,6 +15,6 @@ below to see their documentation.
 \describe{
   \item{generics}{\code{\link[generics]{min_grid}}}
 
-  \item{parsnip}{\code{\link[parsnip]{translate}}}
+  \item{parsnip}{\code{\link[parsnip:add_on_exports]{check_args}}, \code{\link[parsnip]{translate}}}
 }}
 

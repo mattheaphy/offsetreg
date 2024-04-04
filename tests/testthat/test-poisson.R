@@ -14,6 +14,17 @@ rec <- recipes::recipe(deaths ~ gender + age_group + year + off,
                        data = us_deaths) |>
   recipes::step_rename(offset = off)
 
+test_that("Error checks trigger", {
+  expect_error(glm_offset(data = 1),
+               regexp = "`data` must be a data frame")
+  expect_error(glm_offset(deaths ~ age_group, data = us_deaths,
+                          offset_col = "x"),
+               regexp = "A column named `x` must be present")
+  expect_error(glmnet_offset(x_off, y, offset_col = "x"),
+               regexp = "A column named `x` must be present")
+})
+
+
 test_that("*_offset() models work", {
 
   # glm_offset
@@ -72,7 +83,7 @@ test_that("poisson_reg_offset() works with recipes", {
     workflows::add_model(poisson_reg_offset(penalty = 1E-5, mixture = 0.25) |>
                            set_engine("glmnet_offset")) |>
     fit(data = us_deaths)
-  # re-do the baseline glmnet fix - columns are in a different order after the
+  # re-do the baseline glmnet fit - columns are in a different order after the
   # recipe
   x <- rec |> recipes::prep() |> recipes::juice() |> as.matrix()
   x <- x[, !colnames(x) %in% c("offset", "deaths")]

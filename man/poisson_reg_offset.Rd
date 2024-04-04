@@ -37,7 +37,7 @@ and \code{model_spec}.
 }
 \description{
 \code{poisson_reg_offset()} defines a generalized linear model of count data with
-an offset that follow a Poisson distribution.
+an offset that follows a Poisson distribution.
 }
 \details{
 This function is similar to \code{\link[parsnip:poisson_reg]{parsnip::poisson_reg()}} except that

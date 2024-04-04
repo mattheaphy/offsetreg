@@ -1,6 +1,6 @@
 Package: offsetreg
 Title: An Extension of 'Tidymodels' Supporting Offset Terms
-Version: 1.0.0
+Version: 1.1.0
 Authors@R: 
     person("Matt", "Heaphy", email = "mattrmattrs@gmail.com", role = c("aut", "cre", "cph"))
 Maintainer: Matt Heaphy <mattrmattrs@gmail.com>    
@@ -20,17 +20,24 @@ RoxygenNote: 7.3.0
 Imports: 
     generics,
     glue,
-    parsnip,
+    parsnip (>= 1.2.0),
     poissonreg,
     rlang,
     stats
-Suggests: 
+Suggests:
+    broom,
     glmnet,
+    knitr,
     recipes,
+    rmarkdown,
+    rpart,
     testthat (>= 3.0.0),
     tune,
-    workflows
+    workflows,
+    rsample,
+    xgboost
 Config/testthat/edition: 3
 Depends: 
     R (>= 4.1)
 LazyData: true
+VignetteBuilder: knitr

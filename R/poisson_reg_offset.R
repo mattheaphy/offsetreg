@@ -1,7 +1,7 @@
 #' Poisson regression models with offsets
 #'
 #' `poisson_reg_offset()` defines a generalized linear model of count data with
-#' an offset that follow a Poisson distribution.
+#' an offset that follows a Poisson distribution.
 #'
 #' This function is similar to [parsnip::poisson_reg()] except that
 #' specification of an offset column is required.
@@ -57,6 +57,22 @@ translate.poisson_reg_offset <- function (x, engine = x$engine, ...) {
     x$args$penalty <- rlang::eval_tidy(x$args$penalty)
   }
   x
+}
+
+# code from the parsnip package
+#' @export
+check_args.poisson_reg_offset <- function(object) {
+
+  args <- lapply(object$args, rlang::eval_tidy)
+
+  if (all(is.numeric(args$penalty)) && any(args$penalty < 0))
+    rlang::abort("The amount of regularization should be >= 0.")
+  if (is.numeric(args$mixture) && (args$mixture < 0 | args$mixture > 1))
+    rlang::abort("The mixture proportion should be within [0,1].")
+  if (is.numeric(args$mixture) && length(args$mixture) > 1)
+    rlang::abort("Only one value of `mixture` is allowed.")
+
+  invisible(object)
 }
 
 # code from the parsnip package

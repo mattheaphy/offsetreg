@@ -1,41 +1,41 @@
 #' @noRd
 make_poisson_reg_glm_offset <- function() {
   # add a new model to the env
-  parsnip::set_model_engine(
+  set_model_engine(
     "poisson_reg_offset",
     mode = "regression",
     eng = "glm_offset"
   )
   # now there's a single row for the glm engine
-  parsnip::set_dependency(
+  set_dependency(
     "poisson_reg_offset",
     eng = "glm_offset",
     pkg = "stats",
     mode = "regression")
-  parsnip::set_dependency(
+  set_dependency(
     "poisson_reg_offset",
     eng = "glm_offset",
     pkg = "poissonreg",
     mode = "regression")
-  parsnip::set_dependency(
+  set_dependency(
     "poisson_reg_offset",
     eng = "glm_offset",
     pkg = "offsetreg",
     mode = "regression")
 
-  parsnip::set_fit(
+  set_fit(
     model = "poisson_reg_offset",
     eng = "glm_offset",
     mode = "regression",
     value = list(
       interface = "formula",
-      protect = c("formula", "data"),
+      protect = c("formula", "data", "weights"),
       func = c(pkg = "offsetreg", fun = "glm_offset"),
       defaults = list(family = "poisson", offset_col = "offset")
     )
   )
 
-  parsnip::set_encoding(
+  set_encoding(
     model = "poisson_reg_offset",
     eng = "glm_offset",
     mode = "regression",
@@ -47,7 +47,7 @@ make_poisson_reg_glm_offset <- function() {
     )
   )
 
-  parsnip::set_pred(
+  set_pred(
     model = "poisson_reg_offset",
     eng = "glm_offset",
     mode = "regression",
@@ -65,7 +65,7 @@ make_poisson_reg_glm_offset <- function() {
     )
   )
 
-  parsnip::set_pred(
+  set_pred(
     model = "poisson_reg_offset",
     eng = "glm_offset",
     mode = "regression",
@@ -82,31 +82,31 @@ make_poisson_reg_glm_offset <- function() {
 
 make_poisson_reg_glmnet_offset <- function() {
 
-  parsnip::set_model_engine(
+  set_model_engine(
     "poisson_reg_offset",
     mode = "regression",
     eng = "glmnet_offset")
 
-  parsnip::set_dependency(
+  set_dependency(
     "poisson_reg_offset",
     eng = "glmnet_offset",
     pkg = "glmnet",
     mode = "regression"
   )
-  parsnip::set_dependency(
+  set_dependency(
     "poisson_reg_offset",
     eng = "glmnet_offset",
     pkg = "poissonreg",
     mode = "regression"
   )
-  parsnip::set_dependency(
+  set_dependency(
     "poisson_reg_offset",
     eng = "glmnet_offset",
     pkg = "offsetreg",
     mode = "regression"
   )
 
-  parsnip::set_model_arg(
+  set_model_arg(
     model = "poisson_reg_offset",
     eng = "glmnet_offset",
     parsnip = "penalty",
@@ -115,7 +115,7 @@ make_poisson_reg_glmnet_offset <- function() {
     has_submodel = TRUE
   )
 
-  parsnip::set_model_arg(
+  set_model_arg(
     model = "poisson_reg_offset",
     eng = "glmnet_offset",
     parsnip = "mixture",
@@ -124,7 +124,7 @@ make_poisson_reg_glmnet_offset <- function() {
     has_submodel = FALSE
   )
 
-  parsnip::set_fit(
+  set_fit(
     model = "poisson_reg_offset",
     eng = "glmnet_offset",
     mode = "regression",
@@ -136,7 +136,7 @@ make_poisson_reg_glmnet_offset <- function() {
     )
   )
 
-  parsnip::set_encoding(
+  set_encoding(
     model = "poisson_reg_offset",
     eng = "glmnet_offset",
     mode = "regression",
@@ -154,21 +154,21 @@ make_poisson_reg_glmnet_offset <- function() {
     newoffset = expr(new_data[, "offset", drop = TRUE])
   )
 
-  parsnip::set_pred(
+  set_pred(
     model = "poisson_reg_offset",
     eng = "glmnet_offset",
     mode = "regression",
     type = "numeric",
     value = list(
       pre = .predict_pre_offset_rename,
-      post = parsnip::.organize_glmnet_pred,
+      post = .organize_glmnet_pred,
       func = c(fun = "predict"),
       args = c(pred_args,
                type = "response",
                s = expr(object$spec$args$penalty)))
   )
 
-  parsnip::set_pred(
+  set_pred(
     model = "poisson_reg_offset",
     eng = "glmnet_offset",
     mode = "regression",
