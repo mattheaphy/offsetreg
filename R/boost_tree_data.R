@@ -115,7 +115,7 @@ make_boost_tree_xgboost_offset <- function() {
     mode = "regression",
     type = "numeric",
     value = list(
-      pre = NULL,
+      pre = .predict_pre_offset_rename,
       post = NULL,
       func = c(fun = "xgb_predict_offset"),
       args = list(object = expr(object$fit), new_data = expr(new_data),
@@ -129,7 +129,7 @@ make_boost_tree_xgboost_offset <- function() {
     mode = "regression",
     type = "raw",
     value = list(
-      pre = NULL,
+      pre = .predict_pre_offset_rename,
       post = NULL,
       func = c(fun = "xgb_predict_offset"),
       args = list(object = expr(object$fit), new_data = expr(new_data),

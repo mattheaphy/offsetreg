@@ -1,10 +1,15 @@
-
 us_deaths$off <- log(us_deaths$population)
-x <- model.matrix(~ age_group + gender, us_deaths)[, -1]
 
+us_deaths2 <- recipes::recipe(~ age_group + gender + year + off, us_deaths) |>
+  recipes::step_dummy(age_group, gender, one_hot = TRUE) |>
+  recipes::prep() |>
+  recipes::juice()
 
-xgtrain <- xgboost::xgb.DMatrix(x, label = us_deaths$deaths)
-xgboost::setinfo(xgtrain, "base_margin", us_deaths$off)
+x <- as.matrix(us_deaths2)
+
+xgtrain <- xgboost::xgb.DMatrix(x[, colnames(x) != "off"],
+                                label = us_deaths$deaths,
+                                base_margin = us_deaths$off)
 
 set.seed(42)
 mod <- xgboost::xgb.train(
@@ -21,7 +26,6 @@ mod <- xgboost::xgb.train(
   nrounds = 25
 )
 
-x <- model.matrix(~ age_group + gender + off, us_deaths)[, -1]
 mod2 <- xgb_train_offset(x,
                          us_deaths$deaths, "off",
                          eta = 1, subsample = 1, colsample_bynode = 1,
@@ -59,4 +63,24 @@ test_that("xgb_train_offset throws the correct errors and warnings", {
                  regexp = "Please supply elements of the `params` list")
   expect_error(xgb_predict_offset(mod2, xgboost::xgb.DMatrix(x)),
                regexp = "If `new_data` is an `xgb.DMatrix`,")
+})
+
+# standard formula for testing
+f <- deaths ~ age_group + gender + year + off
+
+test_that("boost_tree_offset() works", {
+
+  xgb_off <- boost_tree_offset(learn_rate = 1,
+                               sample_size = 1,
+                               mtry = 11,
+                               min_n = 1,
+                               tree_depth = 2,
+                               trees = 25) |>
+    set_engine("xgboost_offset", offset_col = "off") |>
+    fit(f, data = us_deaths)
+  expect_identical(predict(mod, xgtrain),
+                   predict(xgb_off, us_deaths)$.pred)
+  expect_identical(predict(mod, xgtrain),
+                   predict(xgb_off, us_deaths, type = "raw"))
+
 })
