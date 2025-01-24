@@ -104,7 +104,7 @@ update.boost_tree_offset <- function(object,
 
 # code from the parsnip package
 #' @export
-check_args.boost_tree_offset <- function(object) {
+check_args.boost_tree_offset <- function(object, call = NULL) {
 
   args <- lapply(object$args, rlang::eval_tidy)
 

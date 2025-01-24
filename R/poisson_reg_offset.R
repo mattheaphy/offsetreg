@@ -61,7 +61,7 @@ translate.poisson_reg_offset <- function (x, engine = x$engine, ...) {
 
 # code from the parsnip package
 #' @export
-check_args.poisson_reg_offset <- function(object) {
+check_args.poisson_reg_offset <- function(object, call = NULL) {
 
   args <- lapply(object$args, rlang::eval_tidy)
 
