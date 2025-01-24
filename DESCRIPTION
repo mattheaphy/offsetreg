@@ -36,6 +36,8 @@ Suggests:
     workflows,
     rsample,
     xgboost
+Remotes:
+    tidymodels/parsnip
 Config/testthat/edition: 3
 Depends: 
     R (>= 4.1)
