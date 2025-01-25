@@ -16,11 +16,11 @@ URL: https://github.com/mattheaphy/offsetreg/, https://mattheaphy.github.io/offs
 BugReports: https://github.com/mattheaphy/offsetreg/issues
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.0
+RoxygenNote: 7.3.2
 Imports: 
     generics,
     glue,
-    parsnip (>= 1.2.0),
+    parsnip (>= 1.2.1.9004),
     poissonreg,
     rlang,
     stats
@@ -36,6 +36,8 @@ Suggests:
     workflows,
     rsample,
     xgboost
+Remotes:
+    tidymodels/parsnip
 Config/testthat/edition: 3
 Depends: 
     R (>= 4.1)
