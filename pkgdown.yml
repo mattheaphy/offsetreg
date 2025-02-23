@@ -3,7 +3,7 @@ pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   usage: usage.html
-last_built: 2025-02-23T14:37Z
+last_built: 2025-02-23T14:39Z
 urls:
   reference: https://mattheaphy.github.io/offsetreg/reference
   article: https://mattheaphy.github.io/offsetreg/articles
