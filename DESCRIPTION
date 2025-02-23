@@ -20,7 +20,7 @@ RoxygenNote: 7.3.2
 Imports: 
     generics,
     glue,
-    parsnip (>= 1.2.1.9004),
+    parsnip (>= 1.3.0),
     poissonreg,
     rlang,
     stats
@@ -36,8 +36,6 @@ Suggests:
     workflows,
     rsample,
     xgboost
-Remotes:
-    tidymodels/parsnip
 Config/testthat/edition: 3
 Depends: 
     R (>= 4.1)
