@@ -34,8 +34,10 @@
 #' @returns An `rpart` model
 #'
 #' @examples
-#' rpart_exposure(deaths ~ age_group + gender, us_deaths,
-#'                exposure_col = "population")
+#' if (interactive()) {
+#'   rpart_exposure(deaths ~ age_group + gender, us_deaths,
+#'                  exposure_col = "population")
+#' }
 #'
 #' @seealso [rpart::rpart()]
 #' @export

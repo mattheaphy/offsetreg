@@ -26,9 +26,11 @@
 #' @returns A `glm` object. See [stats::glm()] for full details.
 #'
 #' @examples
-#' us_deaths$off <- log(us_deaths$population)
-#' glm_offset(deaths ~ age_group + gender, family = "poisson",
-#'            us_deaths, offset_col = "off")
+#' if (interactive()) {
+#'   us_deaths$off <- log(us_deaths$population)
+#'   glm_offset(deaths ~ age_group + gender, family = "poisson",
+#'              us_deaths, offset_col = "off")
+#' }
 #'
 #' @seealso [stats::glm()]
 #' @export
