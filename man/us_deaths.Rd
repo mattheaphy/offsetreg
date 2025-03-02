@@ -22,7 +22,7 @@ Statistics. National Vital Statistics System, Mortality 1999-2020 on CDC
 WONDER Online Database, released in 2021. Data are from the Multiple Cause
 of Death Files, 1999-2020, as compiled from data provided by the 57 vital
 statistics jurisdictions through the Vital Statistics Cooperative Program.
-Accessed at \url{http://wonder.cdc.gov/mcd-icd10.html} on Jan 15, 2024."
+Accessed at \url{https://wonder.cdc.gov/mcd-icd10.html} on Jan 15, 2024."
 }
 \usage{
 us_deaths

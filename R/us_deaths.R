@@ -20,6 +20,6 @@
 #' WONDER Online Database, released in 2021. Data are from the Multiple Cause
 #' of Death Files, 1999-2020, as compiled from data provided by the 57 vital
 #' statistics jurisdictions through the Vital Statistics Cooperative Program.
-#' Accessed at <http://wonder.cdc.gov/mcd-icd10.html> on Jan 15, 2024."
+#' Accessed at <https://wonder.cdc.gov/mcd-icd10.html> on Jan 15, 2024."
 #' @md
 "us_deaths"
