@@ -1,3 +1,7 @@
+# offsetreg 1.2.0
+
+- Added support for additional named arguments passed to `stats::glm()` in `glm_offset()` and `glmnet::glmnet()` in `glmnet_offset()`.
+
 # offsetreg 1.1.1
 
 - Behind-the-scenes compatibility update for parsnip 1.3.0, which is now the minimum required version.
