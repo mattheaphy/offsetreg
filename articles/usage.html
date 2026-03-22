@@ -59,7 +59,7 @@
       <h1>When to use offsetreg</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/mattheaphy/offsetreg/blob/v1.1.0/vignettes/usage.Rmd" class="external-link"><code>vignettes/usage.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/mattheaphy/offsetreg/blob/main/vignettes/usage.Rmd" class="external-link"><code>vignettes/usage.Rmd</code></a></small>
       <div class="d-none name"><code>usage.Rmd</code></div>
     </div>
 
@@ -187,7 +187,7 @@ are passed as a numeric vector using an optional engine-specific
 <span>  <span class="fu"><a href="https://generics.r-lib.org/reference/fit.html" class="external-link">fit</a></span><span class="op">(</span><span class="va">deaths</span> <span class="op">~</span> <span class="va">year</span> <span class="op">+</span> <span class="va">gender</span> <span class="op">+</span> <span class="va">age_group</span>, </span>
 <span>      data <span class="op">=</span> <span class="va">us_deaths</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Loaded glmnet 4.1-8</span></span>
+<span><span class="co">#&gt; Loaded glmnet 4.1-10</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 9 × 3</span></span></span>
 <span><span class="co">#&gt;   term            estimate penalty</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
@@ -344,12 +344,13 @@ the <code>us_deaths</code> data set without offsetreg.</p>
 <span>  <span class="fu"><a href="https://tune.tidymodels.org/reference/collect_predictions.html" class="external-link">collect_metrics</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; → <span style="color: #BB0000; font-weight: bold;">A</span> | <span style="color: #BB0000;">error</span>:   No newoffset provided for prediction, yet offset used in fit of glmnet</span></span>
 <span><span class="co">#&gt; There were issues with some computations   <span style="color: #BB0000; font-weight: bold;">A</span>: x1</span></span>
-<span><span class="co">#&gt; There were issues with some computations   <span style="color: #BB0000; font-weight: bold;">A</span>: x5</span></span>
-<span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Warning: All models failed. Run `show_notes(.Last.tune.result)` for more</span></span>
 <span><span class="co">#&gt; information.</span></span>
+<span><span class="co">#&gt; There were issues with some computations   <span style="color: #BB0000; font-weight: bold;">A</span>: x5</span></span>
+<span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; <span style="color: #BBBB00; font-weight: bold;">Error</span><span style="font-weight: bold;"> in `estimate_tune_results()`:</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> All models failed. Run `show_notes(.Last.tune.result)` for more information.</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> All models failed. Run `show_notes(.Last.tune.result)` for more</span></span>
+<span><span class="co">#&gt;   information.</span></span></code></pre></div>
 <p>All models failed to fit, and we receive a specific error message
 about no offsets being available for predictions.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
@@ -368,10 +369,10 @@ function without error.</p>
 <span>    <span class="fu"><a href="https://tune.tidymodels.org/reference/fit_resamples.html" class="external-link">fit_resamples</a></span><span class="op">(</span><span class="va">resamples</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://tune.tidymodels.org/reference/collect_predictions.html" class="external-link">collect_metrics</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 6</span></span></span>
-<span><span class="co">#&gt;   .metric .estimator      mean     n    std_err .config             </span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> rmse    standard   <span style="text-decoration: underline;">26</span>396.        5 <span style="text-decoration: underline;">3</span>385.      Preprocessor1_Model1</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> rsq     standard       0.979     5    0.003<span style="text-decoration: underline;">13</span> Preprocessor1_Model1</span></span></code></pre></div>
+<span><span class="co">#&gt;   .metric .estimator      mean     n    std_err .config        </span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> rmse    standard   <span style="text-decoration: underline;">26</span>396.        5 <span style="text-decoration: underline;">3</span>385.      pre0_mod0_post0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> rsq     standard       0.979     5    0.003<span style="text-decoration: underline;">13</span> pre0_mod0_post0</span></span></code></pre></div>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -385,7 +386,7 @@ function without error.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>

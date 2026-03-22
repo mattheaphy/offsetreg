@@ -1,0 +1,22 @@
+# Authors and Citation
+
+## Authors
+
+- **Matt Heaphy**. Author, maintainer, copyright holder.
+
+## Citation
+
+Source:
+[`DESCRIPTION`](https://github.com/mattheaphy/offsetreg/blob/main/DESCRIPTION)
+
+Heaphy M (2026). *offsetreg: An Extension of 'Tidymodels' Supporting
+Offset Terms*. R package version 1.1.1,
+<https://github.com/mattheaphy/offsetreg/>.
+
+    @Manual{,
+      title = {offsetreg: An Extension of 'Tidymodels' Supporting Offset Terms},
+      author = {Matt Heaphy},
+      year = {2026},
+      note = {R package version 1.1.1},
+      url = {https://github.com/mattheaphy/offsetreg/},
+    }

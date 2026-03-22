@@ -35,7 +35,7 @@ trees using weighted exposures (observation times)."></head><body>
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Poisson Recursive Partitioning and Regression Trees with Exposures</h1>
-      <small class="dont-index">Source: <a href="https://github.com/mattheaphy/offsetreg/blob/v1.1.0/R/rpart.R" class="external-link"><code>R/rpart.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/mattheaphy/offsetreg/blob/main/R/rpart.R" class="external-link"><code>R/rpart.R</code></a></small>
       <div class="d-none name"><code>rpart_exposure.Rd</code></div>
     </div>
 
@@ -123,24 +123,10 @@ details.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">rpart_exposure</span><span class="op">(</span><span class="va">deaths</span> <span class="op">~</span> <span class="va">age_group</span> <span class="op">+</span> <span class="va">gender</span>, <span class="va">us_deaths</span>,</span></span>
-<span class="r-in"><span>               exposure_col <span class="op">=</span> <span class="st">"population"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> n= 140 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> node), split, n, deviance, yval</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       * denotes terminal node</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  1) root 140 51701770.0 0.012433090  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    2) age_group=25-34,35-44,45-54,55-64,65-74 100 10090330.0 0.005996979  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      4) age_group=25-34,35-44,45-54 60  1037681.0 0.002401215  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        8) age_group=25-34,35-44 40   219942.2 0.001550297 *</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        9) age_group=45-54 20   102550.3 0.004096230 *</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      5) age_group=55-64,65-74 40  1598645.0 0.012700650  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       10) age_group=55-64 20   246107.6 0.008899093 *</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       11) age_group=65-74 20   237356.1 0.018263680 *</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    3) age_group=75-84,85+ 40  4697172.0 0.073516860  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      6) age_group=75-84 20   170261.7 0.045847100 *</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      7) age_group=85+ 20    45488.2 0.137105000 *</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="fu">rpart_exposure</span><span class="op">(</span><span class="va">deaths</span> <span class="op">~</span> <span class="va">age_group</span> <span class="op">+</span> <span class="va">gender</span>, <span class="va">us_deaths</span>,</span></span>
+<span class="r-in"><span>                 exposure_col <span class="op">=</span> <span class="st">"population"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
@@ -153,7 +139,7 @@ details.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

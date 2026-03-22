@@ -43,7 +43,7 @@ term is added to the data set.'></head><body>
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Boosted Poisson Trees with Offsets via <code>xgboost</code></h1>
-      <small class="dont-index">Source: <a href="https://github.com/mattheaphy/offsetreg/blob/v1.1.0/R/xgboost.R" class="external-link"><code>R/xgboost.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/mattheaphy/offsetreg/blob/main/R/xgboost.R" class="external-link"><code>R/xgboost.R</code></a></small>
       <div class="d-none name"><code>xgb_train_offset.Rd</code></div>
     </div>
 
@@ -177,35 +177,17 @@ columns affects (instead of counts).</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">us_deaths</span><span class="op">$</span><span class="va">off</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">us_deaths</span><span class="op">$</span><span class="va">population</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html" class="external-link">model.matrix</a></span><span class="op">(</span><span class="op">~</span> <span class="va">age_group</span> <span class="op">+</span> <span class="va">gender</span> <span class="op">+</span> <span class="va">off</span>, <span class="va">us_deaths</span><span class="op">)</span><span class="op">[</span>, <span class="op">-</span><span class="fl">1</span><span class="op">]</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="va">us_deaths</span><span class="op">$</span><span class="va">off</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">us_deaths</span><span class="op">$</span><span class="va">population</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html" class="external-link">model.matrix</a></span><span class="op">(</span><span class="op">~</span> <span class="va">age_group</span> <span class="op">+</span> <span class="va">gender</span> <span class="op">+</span> <span class="va">off</span>, <span class="va">us_deaths</span><span class="op">)</span><span class="op">[</span>, <span class="op">-</span><span class="fl">1</span><span class="op">]</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu">xgb_train_offset</span><span class="op">(</span><span class="va">x</span>, <span class="va">us_deaths</span><span class="op">$</span><span class="va">deaths</span>, <span class="st">"off"</span>,</span></span>
-<span class="r-in"><span>                        eta <span class="op">=</span> <span class="fl">1</span>, colsample_bynode <span class="op">=</span> <span class="fl">1</span>,</span></span>
-<span class="r-in"><span>                        max_depth <span class="op">=</span> <span class="fl">2</span>, nrounds <span class="op">=</span> <span class="fl">25</span>,</span></span>
-<span class="r-in"><span>                        counts <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu">xgb_train_offset</span><span class="op">(</span><span class="va">x</span>, <span class="va">us_deaths</span><span class="op">$</span><span class="va">deaths</span>, <span class="st">"off"</span>,</span></span>
+<span class="r-in"><span>                          eta <span class="op">=</span> <span class="fl">1</span>, colsample_bynode <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>                          max_depth <span class="op">=</span> <span class="fl">2</span>, nrounds <span class="op">=</span> <span class="fl">25</span>,</span></span>
+<span class="r-in"><span>                          counts <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">xgb_predict_offset</span><span class="op">(</span><span class="va">mod</span>, <span class="va">x</span>, <span class="st">"off"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   [1]  86917.36  87856.75  88831.02  90268.80  91491.18  92494.47  93641.54</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   [8]  94210.34  94604.33  94789.28  32818.43  32719.24  32662.38  32737.09</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [15]  32789.09  32678.39  32982.15  33278.13  33562.50  33921.54  74569.45</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [22]  73790.58  72925.19  72384.32  71909.84  71223.78  70527.45  69285.33</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [29]  68012.13  67153.13 145755.89 147822.38 150606.58 153536.02 156549.61</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [36] 158776.39 160801.28 161806.72 162365.67 162106.05 161415.55 171863.98</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [43] 180423.08 188895.03 197082.48 204894.67 212519.39 218433.97 225662.45</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [50] 233487.92 270470.00 271263.03 273451.59 277127.31 281051.25 286639.03</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [57] 295249.28 308080.94 319192.50 328322.53 486268.75 496409.81 505989.22</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [64] 512867.00 520395.28 525788.94 530030.50 533801.06 535023.19 536953.31</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [71] 104308.39 105768.89 107269.27 108898.67 110529.01 112018.90 113959.95</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [78] 115047.35 115783.27 116205.40  48726.80  48606.59  48538.31  48571.93</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [85]  48678.86  48556.37  49077.60  49604.14  50096.76  50708.27  85581.42</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [92]  84756.04  83831.90  83272.05  82781.30  82032.50  81256.07  79836.87</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [99]  78401.77  77440.64 160666.69 162808.19 165905.03 169100.42 172538.61</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [106] 175026.88 177291.45 178525.95 179404.23 179318.72 226630.16 242347.41</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [113] 255214.25 267142.56 278895.47 289684.75 300198.97 308180.25 317990.84</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [120] 328460.00 298893.75 302922.44 308948.88 316074.59 323057.00 331279.03</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [127] 343668.12 361214.72 375329.59 387399.72 272258.25 282321.62 293497.50</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [134] 303141.19 312546.25 319811.97 327692.84 334308.69 341610.16 347101.94</span>
+<span class="r-in"><span>  <span class="fu">xgb_predict_offset</span><span class="op">(</span><span class="va">mod</span>, <span class="va">x</span>, <span class="st">"off"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
@@ -218,7 +200,7 @@ columns affects (instead of counts).</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>
