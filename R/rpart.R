@@ -35,8 +35,11 @@
 #'
 #' @examples
 #' if (interactive()) {
-#'   rpart_exposure(deaths ~ age_group + gender, us_deaths,
-#'                  exposure_col = "population")
+#'   rpart_exposure(
+#'     deaths ~ age_group + gender,
+#'     us_deaths,
+#'     exposure_col = "population"
+#'   )
 #' }
 #'
 #' @seealso [rpart::rpart()]

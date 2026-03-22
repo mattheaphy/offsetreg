@@ -50,8 +50,12 @@ details.
 \examples{
 if (interactive()) {
   us_deaths$off <- log(us_deaths$population)
-  glm_offset(deaths ~ age_group + gender, family = "poisson",
-             us_deaths, offset_col = "off")
+  glm_offset(
+    deaths ~ age_group + gender,
+    family = "poisson",
+    us_deaths,
+    offset_col = "off"
+  )
 }
 
 }
