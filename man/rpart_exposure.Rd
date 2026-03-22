@@ -59,8 +59,10 @@ same meanings as \code{\link[rpart:rpart]{rpart::rpart()}}. \code{shrink} is pas
 details.
 }
 \examples{
-rpart_exposure(deaths ~ age_group + gender, us_deaths,
-               exposure_col = "population")
+if (interactive()) {
+  rpart_exposure(deaths ~ age_group + gender, us_deaths,
+                 exposure_col = "population")
+}
 
 }
 \seealso{
