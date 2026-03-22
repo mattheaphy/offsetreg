@@ -1,9 +1,9 @@
 make_decision_tree_rpart_exposure <- function() {
-
   set_model_engine(
     "decision_tree_exposure",
     mode = "regression",
-    eng = "rpart_exposure")
+    eng = "rpart_exposure"
+  )
 
   set_dependency(
     "decision_tree_exposure",
@@ -79,8 +79,7 @@ make_decision_tree_rpart_exposure <- function() {
       pre = NULL,
       post = NULL,
       func = c(fun = "predict"),
-      args = c(object = expr(object$fit),
-               newdata = expr(new_data))
+      args = c(object = expr(object$fit), newdata = expr(new_data))
     )
   )
 
@@ -93,8 +92,7 @@ make_decision_tree_rpart_exposure <- function() {
       pre = NULL,
       post = NULL,
       func = c(fun = "predict"),
-      args = c(object = expr(object$fit),
-               newdata = expr(new_data))
+      args = c(object = expr(object$fit), newdata = expr(new_data))
     )
   )
 }

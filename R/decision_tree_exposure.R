@@ -20,19 +20,22 @@
 #' @inheritParams parsnip::decision_tree
 #' @seealso [parsnip::decision_tree()]
 #' @export
-decision_tree_exposure <- function(mode = "regression",
-                                   engine = "rpart_exposure",
-                                   cost_complexity = NULL,
-                                   tree_depth = NULL,
-                                   min_n = NULL) {
-
-  if (mode  != "regression") {
+decision_tree_exposure <- function(
+  mode = "regression",
+  engine = "rpart_exposure",
+  cost_complexity = NULL,
+  tree_depth = NULL,
+  min_n = NULL
+) {
+  if (mode != "regression") {
     rlang::abort("`mode` should be 'regression'")
   }
 
-  args <- list(cost_complexity = rlang::enquo(cost_complexity),
-               tree_depth = rlang::enquo(tree_depth),
-               min_n = rlang::enquo(min_n))
+  args <- list(
+    cost_complexity = rlang::enquo(cost_complexity),
+    tree_depth = rlang::enquo(tree_depth),
+    min_n = rlang::enquo(min_n)
+  )
 
   # Save some empty slots for future parts of the specification
   new_model_spec(
@@ -56,16 +59,20 @@ make_decision_tree_exposure <- function() {
 
 # code from the parsnip package
 #' @export
-update.decision_tree_exposure <- function(object,
-                                      parameters = NULL,
-                                      cost_complexity = NULL,
-                                      tree_depth = NULL,
-                                      min_n = NULL,
-                                      fresh = FALSE, ...) {
-
-  args <- list(cost_complexity = rlang::enquo(cost_complexity),
-               tree_depth = rlang::enquo(tree_depth),
-               min_n = rlang::enquo(min_n))
+update.decision_tree_exposure <- function(
+  object,
+  parameters = NULL,
+  cost_complexity = NULL,
+  tree_depth = NULL,
+  min_n = NULL,
+  fresh = FALSE,
+  ...
+) {
+  args <- list(
+    cost_complexity = rlang::enquo(cost_complexity),
+    tree_depth = rlang::enquo(tree_depth),
+    min_n = rlang::enquo(min_n)
+  )
 
   update_spec(
     object = object,

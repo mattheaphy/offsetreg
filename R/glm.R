@@ -34,9 +34,13 @@
 #'
 #' @seealso [stats::glm()]
 #' @export
-glm_offset <- function(formula, family = "gaussian", data,
-                       offset_col = "offset", weights = NULL) {
-
+glm_offset <- function(
+  formula,
+  family = "gaussian",
+  data,
+  offset_col = "offset",
+  weights = NULL
+) {
   if (!is.data.frame(data)) {
     rlang::abort("`data` must be a data frame.")
   }
@@ -51,12 +55,13 @@ glm_offset <- function(formula, family = "gaussian", data,
 
   # bind weights to the formula's environment to avoid an error in model.frame
   rlang::env_bind(environment(formula), weights = weights)
-  stats::glm(formula,
-             family = family,
-             offset = offset,
-             data = data,
-             weights = weights)
-
+  stats::glm(
+    formula,
+    family = family,
+    offset = offset,
+    data = data,
+    weights = weights
+  )
 }
 
 # internal function used to rename the specified offset column to "offset"
@@ -79,8 +84,7 @@ glm_offset <- function(formula, family = "gaussian", data,
   if (grepl("(\\s|^)\\.(\\s|$)", formula_str[[3]])) {
     # string manipulation is required because R will return an error
     # if update is called on a formula with `.` on the RHS
-    paste(formula_str[[2]], "~",
-          formula_str[[3]], "-", x) |>
+    paste(formula_str[[2]], "~", formula_str[[3]], "-", x) |>
       stats::as.formula()
   } else {
     stats::update(formula, paste("~ . -", x))

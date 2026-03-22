@@ -17,15 +17,17 @@
 #' @inheritParams parsnip::poisson_reg
 #' @seealso [parsnip::poisson_reg()]
 #' @export
-poisson_reg_offset <- function(mode = "regression", penalty = NULL,
-                               mixture = NULL, engine = "glm_offset") {
-
-  if (mode  != "regression") {
+poisson_reg_offset <- function(
+  mode = "regression",
+  penalty = NULL,
+  mixture = NULL,
+  engine = "glm_offset"
+) {
+  if (mode != "regression") {
     rlang::abort("`mode` should be 'regression'")
   }
 
-  args <- list(penalty = rlang::enquo(penalty),
-               mixture = rlang::enquo(mixture))
+  args <- list(penalty = rlang::enquo(penalty), mixture = rlang::enquo(mixture))
 
   # Save some empty slots for future parts of the specification
   new_model_spec(
@@ -49,7 +51,7 @@ make_poisson_reg_offset <- function() {
 
 # code from the parsnip package
 #' @export
-translate.poisson_reg_offset <- function (x, engine = x$engine, ...) {
+translate.poisson_reg_offset <- function(x, engine = x$engine, ...) {
   x <- translate.default(x, engine, ...)
   if (engine == "glmnet_offset") {
     .check_glmnet_penalty_fit(x)
@@ -62,26 +64,31 @@ translate.poisson_reg_offset <- function (x, engine = x$engine, ...) {
 # code from the parsnip package
 #' @export
 check_args.poisson_reg_offset <- function(object, call = NULL) {
-
   args <- lapply(object$args, rlang::eval_tidy)
 
-  if (all(is.numeric(args$penalty)) && any(args$penalty < 0))
+  if (all(is.numeric(args$penalty)) && any(args$penalty < 0)) {
     rlang::abort("The amount of regularization should be >= 0.")
-  if (is.numeric(args$mixture) && (args$mixture < 0 | args$mixture > 1))
+  }
+  if (is.numeric(args$mixture) && (args$mixture < 0 | args$mixture > 1)) {
     rlang::abort("The mixture proportion should be within [0,1].")
-  if (is.numeric(args$mixture) && length(args$mixture) > 1)
+  }
+  if (is.numeric(args$mixture) && length(args$mixture) > 1) {
     rlang::abort("Only one value of `mixture` is allowed.")
+  }
 
   invisible(object)
 }
 
 # code from the parsnip package
 #' @export
-update.poisson_reg_offset <- function(object,
-                                      parameters = NULL,
-                                      penalty = NULL, mixture = NULL,
-                                      fresh = FALSE, ...) {
-
+update.poisson_reg_offset <- function(
+  object,
+  parameters = NULL,
+  penalty = NULL,
+  mixture = NULL,
+  fresh = FALSE,
+  ...
+) {
   args <- list(
     penalty = rlang::enquo(penalty),
     mixture = rlang::enquo(mixture)

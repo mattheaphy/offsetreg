@@ -41,10 +41,16 @@
 #'
 #' @seealso [rpart::rpart()]
 #' @export
-rpart_exposure <- function(formula, data,
-                           exposure_col = "exposure", weights = NULL,
-                           control, cost, shrink = 1, ...) {
-
+rpart_exposure <- function(
+  formula,
+  data,
+  exposure_col = "exposure",
+  weights = NULL,
+  control,
+  cost,
+  shrink = 1,
+  ...
+) {
   rlang::check_installed("rpart")
 
   if (!is.data.frame(data)) {
@@ -64,17 +70,25 @@ rpart_exposure <- function(formula, data,
   # bind weights to the formula's environment to avoid an error in model.frame
   rlang::env_bind(environment(formula), weights = weights)
 
-  rpart::rpart(formula, data = data, weights = weights,
-               parms = list(shrink = shrink), cost = cost, control = control,
-               method = "poisson", ...)
-
+  rpart::rpart(
+    formula,
+    data = data,
+    weights = weights,
+    parms = list(shrink = shrink),
+    cost = cost,
+    control = control,
+    method = "poisson",
+    ...
+  )
 }
 
 # internal function
 .formula_cbind_left <- function(formula) {
   if (length(formula[[2]]) > 1) {
-    rlang::abort(paste0("The left-hand side of `formula` must contain a single",
-                        " response variable."))
+    rlang::abort(paste0(
+      "The left-hand side of `formula` must contain a single",
+      " response variable."
+    ))
   }
   formula_str <- as.character(formula)
   glue("cbind(exposure, {formula_str[[2]]}) ~ {formula_str[[3]]}") |>

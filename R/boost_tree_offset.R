@@ -23,28 +23,32 @@
 #'
 #' @seealso [parsnip::boost_tree()]
 #' @export
-boost_tree_offset <- function(mode = "regression",
-                              engine = "xgboost_offset",
-                              mtry = NULL,
-                              trees = NULL,
-                              min_n = NULL,
-                              tree_depth = NULL,
-                              learn_rate = NULL,
-                              loss_reduction = NULL,
-                              sample_size = NULL,
-                              stop_iter = NULL) {
-
-  if (mode  != "regression") {
+boost_tree_offset <- function(
+  mode = "regression",
+  engine = "xgboost_offset",
+  mtry = NULL,
+  trees = NULL,
+  min_n = NULL,
+  tree_depth = NULL,
+  learn_rate = NULL,
+  loss_reduction = NULL,
+  sample_size = NULL,
+  stop_iter = NULL
+) {
+  if (mode != "regression") {
     rlang::abort("`mode` should be 'regression'")
   }
 
-  args <- list(mtry = rlang::enquo(mtry), trees = rlang::enquo(trees),
-               min_n = rlang::enquo(min_n),
-               tree_depth = rlang::enquo(tree_depth),
-               learn_rate = rlang::enquo(learn_rate),
-               loss_reduction = rlang::enquo(loss_reduction),
-               sample_size = rlang::enquo(sample_size),
-               stop_iter = rlang::enquo(stop_iter))
+  args <- list(
+    mtry = rlang::enquo(mtry),
+    trees = rlang::enquo(trees),
+    min_n = rlang::enquo(min_n),
+    tree_depth = rlang::enquo(tree_depth),
+    learn_rate = rlang::enquo(learn_rate),
+    loss_reduction = rlang::enquo(loss_reduction),
+    sample_size = rlang::enquo(sample_size),
+    stop_iter = rlang::enquo(stop_iter)
+  )
 
   # Save some empty slots for future parts of the specification
   new_model_spec(
@@ -73,14 +77,20 @@ print.boost_tree_offset <- function(x, ...) {
 
 # code from the parsnip package
 #' @export
-update.boost_tree_offset <- function(object,
-                              parameters = NULL,
-                              mtry = NULL, trees = NULL, min_n = NULL,
-                              tree_depth = NULL, learn_rate = NULL,
-                              loss_reduction = NULL, sample_size = NULL,
-                              stop_iter = NULL,
-                              fresh = FALSE, ...) {
-
+update.boost_tree_offset <- function(
+  object,
+  parameters = NULL,
+  mtry = NULL,
+  trees = NULL,
+  min_n = NULL,
+  tree_depth = NULL,
+  learn_rate = NULL,
+  loss_reduction = NULL,
+  sample_size = NULL,
+  stop_iter = NULL,
+  fresh = FALSE,
+  ...
+) {
   args <- list(
     mtry = rlang::enquo(mtry),
     trees = rlang::enquo(trees),
@@ -105,13 +115,15 @@ update.boost_tree_offset <- function(object,
 # code from the parsnip package
 #' @export
 check_args.boost_tree_offset <- function(object, call = NULL) {
-
   args <- lapply(object$args, rlang::eval_tidy)
 
   if (is.numeric(args$trees) && args$trees < 0) {
     rlang::abort("`trees` should be >= 1.")
   }
-  if (is.numeric(args$sample_size) && (args$sample_size < 0 | args$sample_size > 1)) {
+  if (
+    is.numeric(args$sample_size) &&
+      (args$sample_size < 0 | args$sample_size > 1)
+  ) {
     rlang::abort("`sample_size` should be within [0,1].")
   }
   if (is.numeric(args$tree_depth) && args$tree_depth < 0) {

@@ -35,9 +35,15 @@
 #'
 #' @seealso [glmnet::glmnet()]
 #' @export
-glmnet_offset <- function(x, y, family, offset_col = "offset",
-                          weights = NULL, lambda = NULL, alpha = 1) {
-
+glmnet_offset <- function(
+  x,
+  y,
+  family,
+  offset_col = "offset",
+  weights = NULL,
+  lambda = NULL,
+  alpha = 1
+) {
   rlang::check_installed("glmnet")
 
   if (!offset_col %in% colnames(x)) {
@@ -47,10 +53,15 @@ glmnet_offset <- function(x, y, family, offset_col = "offset",
   offsets <- x[, offset_col]
   x <- x[, !colnames(x) %in% offset_col, drop = FALSE]
 
-  glmnet::glmnet(x, y, family = family, weights, offset = offsets,
-                 lambda = lambda,
-                 alpha = alpha)
-
+  glmnet::glmnet(
+    x,
+    y,
+    family = family,
+    weights,
+    offset = offsets,
+    lambda = lambda,
+    alpha = alpha
+  )
 }
 
 # code from the parsnip package
