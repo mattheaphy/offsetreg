@@ -22,6 +22,7 @@
 #' @param offset_col Character string. The name of a column in `data` containing
 #' offsets.
 #' @param weights Optional weights to use in the fitting process.
+#' @param ... Additional named arguments passed to [stats::glm()].
 #'
 #' @returns A `glm` object. See [stats::glm()] for full details.
 #'
@@ -39,7 +40,8 @@ glm_offset <- function(
   family = "gaussian",
   data,
   offset_col = "offset",
-  weights = NULL
+  weights = NULL,
+  ...
 ) {
   if (!is.data.frame(data)) {
     rlang::abort("`data` must be a data frame.")
@@ -60,7 +62,8 @@ glm_offset <- function(
     family = family,
     offset = offset,
     data = data,
-    weights = weights
+    weights = weights,
+    ...
   )
 }
 

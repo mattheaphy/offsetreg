@@ -11,7 +11,8 @@ glmnet_offset(
   offset_col = "offset",
   weights = NULL,
   lambda = NULL,
-  alpha = 1
+  alpha = 1,
+  ...
 )
 }
 \arguments{
@@ -35,6 +36,8 @@ offsets.}
 \item \code{alpha = 1}: Pure lasso model
 \item \code{alpha = 0}: Pure ridge model
 }}
+
+\item{...}{Additional named arguments passed to \code{\link[glmnet:glmnet]{glmnet::glmnet()}}.}
 }
 \value{
 A \code{glmnet} object. See \code{\link[glmnet:glmnet]{glmnet::glmnet()}} for full details.

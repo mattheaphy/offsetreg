@@ -152,3 +152,25 @@ test_that("finalize works", {
     list(penalty = 0.005, mixture = 0.9)
   )
 })
+
+test_that("... arguments work", {
+  # check the intercpet argument for glmnet_offset
+  no_int <- glmnet_offset(
+    x_off,
+    y,
+    family = "poisson",
+    offset_col = "off",
+    alpha = 0.25,
+    intercept = FALSE
+  )
+
+  no_int2 <- poisson_reg_offset(penalty = 1E-5, mixture = 0.25) |>
+    set_engine("glmnet_offset", offset_col = "off", intercept = FALSE) |>
+    fit(f_off, data = us_deaths)
+
+  expect_equal(coef(no_int, s = 1E-5)["(Intercept)", ], 0)
+  expect_equal(
+    coef(no_int, s = 1E-5),
+    extract_fit_engine(no_int2) |> coef(s = 1E-5)
+  )
+})

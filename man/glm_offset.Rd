@@ -9,7 +9,8 @@ glm_offset(
   family = "gaussian",
   data,
   offset_col = "offset",
-  weights = NULL
+  weights = NULL,
+  ...
 )
 }
 \arguments{
@@ -24,6 +25,8 @@ and error distribution.}
 offsets.}
 
 \item{weights}{Optional weights to use in the fitting process.}
+
+\item{...}{Additional named arguments passed to \code{\link[stats:glm]{stats::glm()}}.}
 }
 \value{
 A \code{glm} object. See \code{\link[stats:glm]{stats::glm()}} for full details.

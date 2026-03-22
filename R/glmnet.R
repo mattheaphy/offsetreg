@@ -22,6 +22,7 @@
 #' (lasso) versus L2 (ridge) regularization.
 #' - `alpha = 1`: Pure lasso model
 #' - `alpha = 0`: Pure ridge model
+#' @param ... Additional named arguments passed to [glmnet::glmnet()].
 #' @inheritParams glm_offset
 #'
 #' @returns A `glmnet` object. See [glmnet::glmnet()] for full details.
@@ -42,7 +43,8 @@ glmnet_offset <- function(
   offset_col = "offset",
   weights = NULL,
   lambda = NULL,
-  alpha = 1
+  alpha = 1,
+  ...
 ) {
   rlang::check_installed("glmnet")
 
@@ -60,7 +62,8 @@ glmnet_offset <- function(
     weights,
     offset = offsets,
     lambda = lambda,
-    alpha = alpha
+    alpha = alpha,
+    ...
   )
 }
 
