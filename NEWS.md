@@ -1,3 +1,9 @@
+# offsetreg 1.2.0
+
+- Added support for additional named arguments passed to `stats::glm()` in `glm_offset()` and `glmnet::glmnet()` in `glmnet_offset()`.
+- Updated the minimum required version of `xgboost` to 3.0 and made behind-the-scenes changes to accomodate its updated API.
+- Added the `cli` package for warning and error messages.
+
 # offsetreg 1.1.1
 
 - Behind-the-scenes compatibility update for parsnip 1.3.0, which is now the minimum required version.

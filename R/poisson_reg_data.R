@@ -11,17 +11,20 @@ make_poisson_reg_glm_offset <- function() {
     "poisson_reg_offset",
     eng = "glm_offset",
     pkg = "stats",
-    mode = "regression")
+    mode = "regression"
+  )
   set_dependency(
     "poisson_reg_offset",
     eng = "glm_offset",
     pkg = "poissonreg",
-    mode = "regression")
+    mode = "regression"
+  )
   set_dependency(
     "poisson_reg_offset",
     eng = "glm_offset",
     pkg = "offsetreg",
-    mode = "regression")
+    mode = "regression"
+  )
 
   set_fit(
     model = "poisson_reg_offset",
@@ -56,12 +59,11 @@ make_poisson_reg_glm_offset <- function() {
       pre = .predict_pre_offset_rename,
       post = NULL,
       func = c(fun = "predict"),
-      args =
-        list(
-          object = expr(object$fit),
-          newdata = expr(new_data),
-          type = "response"
-        )
+      args = list(
+        object = expr(object$fit),
+        newdata = expr(new_data),
+        type = "response"
+      )
     )
   )
 
@@ -81,11 +83,11 @@ make_poisson_reg_glm_offset <- function() {
 
 
 make_poisson_reg_glmnet_offset <- function() {
-
   set_model_engine(
     "poisson_reg_offset",
     mode = "regression",
-    eng = "glmnet_offset")
+    eng = "glmnet_offset"
+  )
 
   set_dependency(
     "poisson_reg_offset",
@@ -163,9 +165,8 @@ make_poisson_reg_glmnet_offset <- function() {
       pre = .predict_pre_offset_rename,
       post = .organize_glmnet_pred,
       func = c(fun = "predict"),
-      args = c(pred_args,
-               type = "response",
-               s = expr(object$spec$args$penalty)))
+      args = c(pred_args, type = "response", s = expr(object$spec$args$penalty))
+    )
   )
 
   set_pred(

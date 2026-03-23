@@ -1,9 +1,9 @@
 make_boost_tree_xgboost_offset <- function() {
-
   set_model_engine(
     "boost_tree_offset",
     mode = "regression",
-    eng = "xgboost_offset")
+    eng = "xgboost_offset"
+  )
 
   set_dependency(
     "boost_tree_offset",
@@ -84,7 +84,6 @@ make_boost_tree_xgboost_offset <- function() {
     has_submodel = FALSE
   )
 
-
   set_fit(
     model = "boost_tree_offset",
     eng = "xgboost_offset",
@@ -118,8 +117,11 @@ make_boost_tree_xgboost_offset <- function() {
       pre = .predict_pre_offset_rename,
       post = NULL,
       func = c(fun = "xgb_predict_offset"),
-      args = list(object = expr(object$fit), new_data = expr(new_data),
-                  offset_col = "offset")
+      args = list(
+        object = expr(object$fit),
+        new_data = expr(new_data),
+        offset_col = "offset"
+      )
     )
   )
 
@@ -132,9 +134,11 @@ make_boost_tree_xgboost_offset <- function() {
       pre = .predict_pre_offset_rename,
       post = NULL,
       func = c(fun = "xgb_predict_offset"),
-      args = list(object = expr(object$fit), new_data = expr(new_data),
-                  offset_col = "offset")
+      args = list(
+        object = expr(object$fit),
+        new_data = expr(new_data),
+        offset_col = "offset"
+      )
     )
   )
-
 }

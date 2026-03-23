@@ -22,26 +22,36 @@
 #' @param offset_col Character string. The name of a column in `data` containing
 #' offsets.
 #' @param weights Optional weights to use in the fitting process.
+#' @param ... Additional named arguments passed to [stats::glm()].
 #'
 #' @returns A `glm` object. See [stats::glm()] for full details.
 #'
 #' @examples
 #' if (interactive()) {
 #'   us_deaths$off <- log(us_deaths$population)
-#'   glm_offset(deaths ~ age_group + gender, family = "poisson",
-#'              us_deaths, offset_col = "off")
+#'   glm_offset(
+#'     deaths ~ age_group + gender,
+#'     family = "poisson",
+#'     us_deaths,
+#'     offset_col = "off"
+#'   )
 #' }
 #'
 #' @seealso [stats::glm()]
 #' @export
-glm_offset <- function(formula, family = "gaussian", data,
-                       offset_col = "offset", weights = NULL) {
-
+glm_offset <- function(
+  formula,
+  family = "gaussian",
+  data,
+  offset_col = "offset",
+  weights = NULL,
+  ...
+) {
   if (!is.data.frame(data)) {
-    rlang::abort("`data` must be a data frame.")
+    cli::cli_abort("`data` must be a data frame.")
   }
   if (!offset_col %in% names(data)) {
-    rlang::abort(glue("A column named `{offset_col}` must be present."))
+    cli::cli_abort("A column named `{offset_col}` must be present.")
   }
 
   # rename the offset column
@@ -51,12 +61,14 @@ glm_offset <- function(formula, family = "gaussian", data,
 
   # bind weights to the formula's environment to avoid an error in model.frame
   rlang::env_bind(environment(formula), weights = weights)
-  stats::glm(formula,
-             family = family,
-             offset = offset,
-             data = data,
-             weights = weights)
-
+  stats::glm(
+    formula,
+    family = family,
+    offset = offset,
+    data = data,
+    weights = weights,
+    ...
+  )
 }
 
 # internal function used to rename the specified offset column to "offset"
@@ -79,8 +91,7 @@ glm_offset <- function(formula, family = "gaussian", data,
   if (grepl("(\\s|^)\\.(\\s|$)", formula_str[[3]])) {
     # string manipulation is required because R will return an error
     # if update is called on a formula with `.` on the RHS
-    paste(formula_str[[2]], "~",
-          formula_str[[3]], "-", x) |>
+    paste(formula_str[[2]], "~", formula_str[[3]], "-", x) |>
       stats::as.formula()
   } else {
     stats::update(formula, paste("~ . -", x))
