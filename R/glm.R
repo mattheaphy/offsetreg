@@ -48,10 +48,10 @@ glm_offset <- function(
   ...
 ) {
   if (!is.data.frame(data)) {
-    rlang::abort("`data` must be a data frame.")
+    cli::cli_abort("`data` must be a data frame.")
   }
   if (!offset_col %in% names(data)) {
-    rlang::abort(glue("A column named `{offset_col}` must be present."))
+    cli::cli_abort("A column named `{offset_col}` must be present.")
   }
 
   # rename the offset column

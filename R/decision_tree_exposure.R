@@ -28,7 +28,7 @@ decision_tree_exposure <- function(
   min_n = NULL
 ) {
   if (mode != "regression") {
-    rlang::abort("`mode` should be 'regression'")
+    cli::cli_abort("`mode` should be 'regression'")
   }
 
   args <- list(

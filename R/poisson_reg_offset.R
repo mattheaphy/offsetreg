@@ -24,7 +24,7 @@ poisson_reg_offset <- function(
   engine = "glm_offset"
 ) {
   if (mode != "regression") {
-    rlang::abort("`mode` should be 'regression'")
+    cli::cli_abort("`mode` should be 'regression'")
   }
 
   args <- list(penalty = rlang::enquo(penalty), mixture = rlang::enquo(mixture))
@@ -67,13 +67,13 @@ check_args.poisson_reg_offset <- function(object, call = NULL) {
   args <- lapply(object$args, rlang::eval_tidy)
 
   if (all(is.numeric(args$penalty)) && any(args$penalty < 0)) {
-    rlang::abort("The amount of regularization should be >= 0.")
+    cli::cli_abort("The amount of regularization should be >= 0.")
   }
   if (is.numeric(args$mixture) && (args$mixture < 0 | args$mixture > 1)) {
-    rlang::abort("The mixture proportion should be within [0,1].")
+    cli::cli_abort("The mixture proportion should be within [0,1].")
   }
   if (is.numeric(args$mixture) && length(args$mixture) > 1) {
-    rlang::abort("Only one value of `mixture` is allowed.")
+    cli::cli_abort("Only one value of `mixture` is allowed.")
   }
 
   invisible(object)

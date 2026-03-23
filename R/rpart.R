@@ -57,10 +57,10 @@ rpart_exposure <- function(
   rlang::check_installed("rpart")
 
   if (!is.data.frame(data)) {
-    rlang::abort("`data` must be a data frame.")
+    cli::cli_abort("`data` must be a data frame.")
   }
   if (!exposure_col %in% names(data)) {
-    rlang::abort(glue("A column named `{exposure_col}` must be present."))
+    cli::cli_abort("A column named `{exposure_col}` must be present.")
   }
 
   # rename the exposure column
@@ -88,10 +88,9 @@ rpart_exposure <- function(
 # internal function
 .formula_cbind_left <- function(formula) {
   if (length(formula[[2]]) > 1) {
-    rlang::abort(paste0(
-      "The left-hand side of `formula` must contain a single",
-      " response variable."
-    ))
+    cli::cli_abort(
+      "The left-hand side of `formula` must contain a single response variable."
+    )
   }
   formula_str <- as.character(formula)
   glue("cbind(exposure, {formula_str[[2]]}) ~ {formula_str[[3]]}") |>

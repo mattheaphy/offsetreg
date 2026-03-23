@@ -36,7 +36,7 @@ boost_tree_offset <- function(
   stop_iter = NULL
 ) {
   if (mode != "regression") {
-    rlang::abort("`mode` should be 'regression'")
+    cli::cli_abort("`mode` should be 'regression'")
   }
 
   args <- list(
@@ -118,19 +118,19 @@ check_args.boost_tree_offset <- function(object, call = NULL) {
   args <- lapply(object$args, rlang::eval_tidy)
 
   if (is.numeric(args$trees) && args$trees < 0) {
-    rlang::abort("`trees` should be >= 1.")
+    cli::cli_abort("`trees` should be >= 1.")
   }
   if (
     is.numeric(args$sample_size) &&
       (args$sample_size < 0 | args$sample_size > 1)
   ) {
-    rlang::abort("`sample_size` should be within [0,1].")
+    cli::cli_abort("`sample_size` should be within [0,1].")
   }
   if (is.numeric(args$tree_depth) && args$tree_depth < 0) {
-    rlang::abort("`tree_depth` should be >= 1.")
+    cli::cli_abort("`tree_depth` should be >= 1.")
   }
   if (is.numeric(args$min_n) && args$min_n < 0) {
-    rlang::abort("`min_n` should be >= 1.")
+    cli::cli_abort("`min_n` should be >= 1.")
   }
 
   invisible(object)

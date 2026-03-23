@@ -60,15 +60,15 @@ xgb_train_offset <- function(
   others <- list(...)
 
   if (!is.numeric(validation) || validation < 0 || validation >= 1) {
-    rlang::abort("`validation` should be on [0, 1).")
+    cli::cli_abort("`validation` should be on [0, 1).")
   }
 
   if (!is.null(early_stop)) {
     if (early_stop <= 1) {
-      rlang::abort(paste0("`early_stop` should be on [2, ", nrounds, ")."))
+      cli::cli_abort("`early_stop` should be on [2, {nrounds}).")
     } else if (early_stop >= nrounds) {
       early_stop <- nrounds - 1
-      rlang::warn(paste0("`early_stop` was reduced to ", early_stop, "."))
+      cli::cli_warn("`early_stop` was reduced to {early_stop}.")
     }
   }
 
@@ -85,7 +85,7 @@ xgb_train_offset <- function(
   )
 
   if (!is.numeric(subsample) || subsample < 0 || subsample > 1) {
-    rlang::abort("`subsample` should be on [0, 1].")
+    cli::cli_abort("`subsample` should be on [0, 1].")
   }
 
   # initialize
@@ -101,15 +101,10 @@ xgb_train_offset <- function(
   }
 
   if (min_child_weight > n) {
-    msg <- paste0(
-      min_child_weight,
-      " samples were requested but there were ",
-      n,
-      " rows in the data. ",
-      n,
-      " will be used."
-    )
-    rlang::warn(msg)
+    cli::cli_warn(paste0(
+      "{min_child_weight} samples were requested but there were ",
+      "{n} rows in the data. {n} will be used."
+    ))
     min_child_weight <- min(min_child_weight, n)
   }
 
@@ -162,7 +157,7 @@ as_xgb_data_offset <- function(
   }
 
   if (!offset_col %in% colnames(x)) {
-    rlang::abort(glue("A column named `{offset_col}` must be present."))
+    cli::cli_abort("A column named `{offset_col}` must be present.")
   }
   offsets <- x[, offset_col]
   x <- x[, !colnames(x) %in% offset_col, drop = FALSE]
@@ -231,15 +226,13 @@ recalc_param <- function(x, counts, denom) {
 # code from the parsnip package
 maybe_proportion <- function(x, nm) {
   if (x < 1) {
-    msg <- paste0(
-      "The option `counts = TRUE` was used but parameter `",
-      nm,
-      "` was given as ",
-      signif(x, 3),
-      ". Please use a value >= 1 or use ",
-      "`counts = FALSE`."
-    )
-    rlang::abort(msg)
+    cli::cli_abort(c(
+      paste0(
+        "The option `counts = TRUE` was used but parameter `{nm}`",
+        " was given as {signif(x, 3)}."
+      ),
+      i = "Please use a value >= 1 or use `counts = FALSE`."
+    ))
   }
 }
 
@@ -250,11 +243,11 @@ process_others <- function(others, arg_list) {
 
   n <- length(guarded_supplied)
   if (n > 0) {
-    rlang::warn(
+    cli::cli_warn(
       c(
-        "!" = glue(
+        "!" = paste0(
           "The following arguments are guarded and will not be passed to ",
-          "`xgb.train()`: {paste(guarded_supplied, collapse = ', ')}."
+          "`xgb.train()`: {guarded_supplied}."
         )
       ),
       class = "xgboost_guarded_warning"
@@ -264,7 +257,7 @@ process_others <- function(others, arg_list) {
   others <- others[!(names(others) %in% guarded)]
 
   if (!is.null(others$params)) {
-    rlang::warn(
+    cli::cli_warn(
       c(
         "!" = paste0(
           "Please supply elements of the `params` list argument as ",
@@ -294,7 +287,7 @@ xgb_predict_offset <- function(object, new_data, offset_col = "offset", ...) {
       as_xgb_data_offset(offset_col = offset_col)
   } else {
     if (is.null(xgboost::getinfo(new_data, "base_margin"))) {
-      rlang::abort(paste0(
+      cli::cli_abort(paste0(
         "If `new_data` is an `xgb.DMatrix`, it must have an ",
         "offset (base_margin) defined."
       ))
