@@ -55,7 +55,7 @@ xgb_train_offset <- function(
   counts = TRUE,
   ...
 ) {
-  rlang::check_installed("xgboost")
+  rlang::check_installed("xgboost", version = "3.0.0")
 
   others <- list(...)
 
@@ -120,19 +120,24 @@ xgb_train_offset <- function(
     colsample_bytree = colsample_bytree,
     colsample_bynode = colsample_bynode,
     min_child_weight = min(min_child_weight, n),
-    subsample = subsample
+    subsample = subsample,
+    objective = "count:poisson"
   )
+
+  if ("nthread" %in% names(others)) {
+    arg_list[["nthread"]] <- others$nthread
+    others[["nthread"]] <- NULL
+  }
 
   others <- process_others(others, arg_list)
 
   main_args <- c(
     list(
       data = quote(x$data),
-      watchlist = quote(x$watchlist),
+      evals = quote(x$evals),
       params = arg_list,
       nrounds = nrounds,
-      early_stopping_rounds = early_stop,
-      objective = "count:poisson"
+      early_stopping_rounds = early_stop
     ),
     others
   )
@@ -164,7 +169,7 @@ as_xgb_data_offset <- function(
 
   # exit early for predictions where y's aren't supplied
   if (missing(y)) {
-    return(xgboost::xgb.DMatrix(x, info = list(base_margin = offsets)))
+    return(xgboost::xgb.DMatrix(x, base_margin = offsets))
   }
 
   if (!inherits(x, "xgb.DMatrix")) {
@@ -176,26 +181,26 @@ as_xgb_data_offset <- function(
         data = x[-trn_index, , drop = FALSE],
         label = y[-trn_index],
         missing = NA,
-        info = list(base_margin = offsets[-trn_index])
+        base_margin = offsets[-trn_index]
       )
-      watch_list <- list(validation = val_data)
+      evals <- list(validation = val_data)
 
-      info_list <- list(label = y[trn_index], base_margin = offsets[trn_index])
-      if (!is.null(weights)) {
-        info_list$weight <- weights[trn_index]
-      }
       dat <- xgboost::xgb.DMatrix(
         data = x[trn_index, , drop = FALSE],
         missing = NA,
-        info = info_list
+        label = y[trn_index],
+        base_margin = offsets[trn_index],
+        weight = weights[trn_index]
       )
     } else {
-      info_list <- list(label = y, base_margin = offsets)
-      if (!is.null(weights)) {
-        info_list$weight <- weights
-      }
-      dat <- xgboost::xgb.DMatrix(x, missing = NA, info = info_list)
-      watch_list <- list(training = dat)
+      dat <- xgboost::xgb.DMatrix(
+        x,
+        missing = NA,
+        label = y,
+        base_margin = offsets,
+        weight = weights
+      )
+      evals <- list(training = dat)
     }
   } else {
     dat <- xgboost::setinfo(x, "label", y)
@@ -203,10 +208,10 @@ as_xgb_data_offset <- function(
     if (!is.null(weights)) {
       dat <- xgboost::setinfo(x, "weight", weights)
     }
-    watch_list <- list(training = dat)
+    evals <- list(training = dat)
   }
 
-  list(data = dat, watchlist = watch_list)
+  list(data = dat, evals = evals)
 }
 
 # code from the parsnip package
@@ -240,7 +245,7 @@ maybe_proportion <- function(x, nm) {
 
 # code from the parsnip package with small edits
 process_others <- function(others, arg_list) {
-  guarded <- c("data", "weights", "watchlist", "objective")
+  guarded <- c("data", "weights", "evals", "objective")
   guarded_supplied <- names(others)[names(others) %in% guarded]
 
   n <- length(guarded_supplied)
