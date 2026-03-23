@@ -1,6 +1,7 @@
 # offsetreg 1.2.0
 
 - Added support for additional named arguments passed to `stats::glm()` in `glm_offset()` and `glmnet::glmnet()` in `glmnet_offset()`.
+- Added the `cli` package for warning and error messages.
 
 # offsetreg 1.1.1
 
