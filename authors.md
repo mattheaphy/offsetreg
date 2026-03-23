@@ -7,7 +7,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/mattheaphy/offsetreg/blob/main/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/mattheaphy/offsetreg/blob/v1.2.0/DESCRIPTION)
 
 Heaphy M (2026). *offsetreg: An Extension of 'Tidymodels' Supporting
 Offset Terms*. R package version 1.2.0,
