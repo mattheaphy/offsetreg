@@ -1,5 +1,20 @@
 # Changelog
 
+## offsetreg 1.2.0
+
+CRAN release: 2026-03-23
+
+- Added support for additional named arguments passed to
+  [`stats::glm()`](https://rdrr.io/r/stats/glm.html) in
+  [`glm_offset()`](https://mattheaphy.github.io/offsetreg/reference/glm_offset.md)
+  and
+  [`glmnet::glmnet()`](https://glmnet.stanford.edu/reference/glmnet.html)
+  in
+  [`glmnet_offset()`](https://mattheaphy.github.io/offsetreg/reference/glmnet_offset.md).
+- Updated the minimum required version of `xgboost` to 3.0 and made
+  behind-the-scenes changes to accomodate its updated API.
+- Added the `cli` package for warning and error messages.
+
 ## offsetreg 1.1.1
 
 CRAN release: 2025-03-02
@@ -35,5 +50,5 @@ CRAN release: 2024-01-23
   [`glmnet_offset()`](https://mattheaphy.github.io/offsetreg/reference/glmnet_offset.md),
   which are wrappers around
   [`stats::glm()`](https://rdrr.io/r/stats/glm.html) and
-  [`glmnet::glmnet()`](https://rdrr.io/pkg/glmnet/man/glmnet.html),
+  [`glmnet::glmnet()`](https://glmnet.stanford.edu/reference/glmnet.html),
   respectively.

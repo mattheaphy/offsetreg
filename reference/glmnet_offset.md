@@ -1,8 +1,8 @@
 # Fit Penalized Generalized Linear Models with an Offset
 
 This function is a wrapper around
-[`glmnet::glmnet()`](https://rdrr.io/pkg/glmnet/man/glmnet.html) that
-uses a column from `x` as an offset.
+[`glmnet::glmnet()`](https://glmnet.stanford.edu/reference/glmnet.html)
+that uses a column from `x` as an offset.
 
 ## Usage
 
@@ -14,7 +14,8 @@ glmnet_offset(
   offset_col = "offset",
   weights = NULL,
   lambda = NULL,
-  alpha = 1
+  alpha = 1,
+  ...
 )
 ```
 
@@ -54,18 +55,23 @@ glmnet_offset(
 
   - `alpha = 0`: Pure ridge model
 
+- ...:
+
+  Additional named arguments passed to
+  [`glmnet::glmnet()`](https://glmnet.stanford.edu/reference/glmnet.html).
+
 ## Value
 
 A `glmnet` object. See
-[`glmnet::glmnet()`](https://rdrr.io/pkg/glmnet/man/glmnet.html) for
-full details.
+[`glmnet::glmnet()`](https://glmnet.stanford.edu/reference/glmnet.html)
+for full details.
 
 ## Details
 
 Outside of the `tidymodels` ecosystem, `glmnet_offset()` has no
 advantages over
-[`glmnet::glmnet()`](https://rdrr.io/pkg/glmnet/man/glmnet.html) since
-that function allows for offsets to be specified in its `offset`
+[`glmnet::glmnet()`](https://glmnet.stanford.edu/reference/glmnet.html)
+since that function allows for offsets to be specified in its `offset`
 argument.
 
 Within `tidymodels`, `glmnet_offset()` provides an advantage because it
@@ -74,12 +80,12 @@ created.
 
 The `x`, `y`, `family`, `lambda`, `alpha` and `weights` arguments have
 the same meanings as
-[`glmnet::glmnet()`](https://rdrr.io/pkg/glmnet/man/glmnet.html). See
-that function's documentation for full details.
+[`glmnet::glmnet()`](https://glmnet.stanford.edu/reference/glmnet.html).
+See that function's documentation for full details.
 
 ## See also
 
-[`glmnet::glmnet()`](https://rdrr.io/pkg/glmnet/man/glmnet.html)
+[`glmnet::glmnet()`](https://glmnet.stanford.edu/reference/glmnet.html)
 
 ## Examples
 

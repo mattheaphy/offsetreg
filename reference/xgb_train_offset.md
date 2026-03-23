@@ -132,10 +132,15 @@ if (interactive()) {
   us_deaths$off <- log(us_deaths$population)
   x <- model.matrix(~ age_group + gender + off, us_deaths)[, -1]
 
-  mod <- xgb_train_offset(x, us_deaths$deaths, "off",
-                          eta = 1, colsample_bynode = 1,
-                          max_depth = 2, nrounds = 25,
-                          counts = FALSE)
+  mod <- xgb_train_offset(
+      x, us_deaths$deaths,
+      "off",
+      eta = 1,
+      colsample_bynode = 1,
+      max_depth = 2,
+      nrounds = 25,
+      counts = FALSE
+  )
 
   xgb_predict_offset(mod, x, "off")
 }

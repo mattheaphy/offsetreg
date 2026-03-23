@@ -12,7 +12,8 @@ glm_offset(
   family = "gaussian",
   data,
   offset_col = "offset",
-  weights = NULL
+  weights = NULL,
+  ...
 )
 ```
 
@@ -38,6 +39,11 @@ glm_offset(
 - weights:
 
   Optional weights to use in the fitting process.
+
+- ...:
+
+  Additional named arguments passed to
+  [`stats::glm()`](https://rdrr.io/r/stats/glm.html).
 
 ## Value
 
@@ -68,7 +74,11 @@ function's documentation for full details.
 ``` r
 if (interactive()) {
   us_deaths$off <- log(us_deaths$population)
-  glm_offset(deaths ~ age_group + gender, family = "poisson",
-             us_deaths, offset_col = "off")
+  glm_offset(
+    deaths ~ age_group + gender,
+    family = "poisson",
+    us_deaths,
+    offset_col = "off"
+  )
 }
 ```

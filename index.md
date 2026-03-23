@@ -31,7 +31,7 @@ Currently, the following model specifications and engines are available:
   - `glm_offset` - a wrapper around
     [`stats::glm()`](https://rdrr.io/r/stats/glm.html)
   - `glmnet_offset` - a wrapper around
-    [`glmnet::glmnet()`](https://rdrr.io/pkg/glmnet/man/glmnet.html)
+    [`glmnet::glmnet()`](https://glmnet.stanford.edu/reference/glmnet.html)
 
 - [`boost_tree_offset()`](https://mattheaphy.github.io/offsetreg/reference/boost_tree_offset.md) -
   create an ensemble of boosted Poisson decision trees. Engines:
